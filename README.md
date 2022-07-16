@@ -1,2 +1,2 @@
-# bpp
-Blender++, an application that can do anything
+# Blender++
+An experimental C application that is meant to replace all the big dudes who sell software for $600 a year. (Hint: That company's name is a material that people used to make houses out of.)
