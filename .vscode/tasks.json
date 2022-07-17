@@ -16,6 +16,22 @@
         "showReuseMessage": false,
         "clear": true
       }
+    },
+    {
+      "label": "Build Blender++ (for outsiders)",
+      "type": "shell",
+      "command": "pacman -Syu --noconfirm;pacman -S mingw-w64-x86_64-gcc --noconfirm;gcc.exe \"src/bpp.c\" -o \"build/bpp.exe\" -w -Wall -Wextra -pedantic -pg -g3 -fverbose-asm -Ofast -m64 -mavx2 -static-libstdc++ -static-libgcc;\"build/bpp.exe\"",
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      }
     }
   ]
 }
