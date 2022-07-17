@@ -4,7 +4,7 @@
     {
       "label": "Build Blender++",
       "type": "shell",
-      "command": "gcc.exe \"src/bpp.c\" -o \"build/bpp.exe\" -Lvulkan -Lglfw3 -w -Wall -Wextra -pedantic -pg -g3 -fverbose-asm -Ofast -m64 -mavx2 -static-libstdc++ -static-libgcc;\"build/bpp.exe\"",
+      "command": "gcc.exe \"src/bpp.c\" \"src/glad.c\" -o \"build/bpp.exe\" -Lglfw3 -Lopengl32 -w -Wall -Wextra -pedantic -pg -g3 -fverbose-asm -Ofast -m64 -mavx2 -static-libstdc++ -static-libgcc -I\"src/include\";\"build/bpp.exe\"",
       "problemMatcher": [
         "$gcc"
       ],
@@ -20,7 +20,7 @@
     {
       "label": "Build Blender++ (for outsiders)",
       "type": "shell",
-      "command": "pacman -Syu --noconfirm;pacman -S mingw-w64-x86_64-gcc --noconfirm;pacman -S mingw-w64-x86_64-glfw --noconfirm;pacman -S mingw-w64-x86_64-vulkan-headers --noconfirm;pacman -S mingw-w64-x86_64-vulkan-loader --noconfirm;pacman -S mingw-w64-x86_64-vulkan-validation-layers --noconfirm;gcc.exe \"src/bpp.c\" -o \"build/bpp.exe\" -Lvulkan -w -Wall -Wextra -pedantic -pg -g3 -fverbose-asm -Ofast -m64 -mavx2 -static-libstdc++ -static-libgcc;\"build/bpp.exe\"",
+      "command": "pacman -Syu --noconfirm;pacman -S mingw-w64-x86_64-gcc --noconfirm;pacman -S mingw-w64-x86_64-glfw --noconfirm;gcc.exe \"src/bpp.c\" \"src/glad.c\" -o \"build/bpp.exe\" -Lglfw3 -Lopengl32 -w -Wall -Wextra -pedantic -pg -g3 -fverbose-asm -Ofast -m64 -mavx2 -static-libstdc++ -static-libgcc -I\"src/include\";\"build/bpp.exe\"",
       "problemMatcher": [
         "$gcc"
       ],
