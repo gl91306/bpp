@@ -1,11 +1,11 @@
 //bpp.c: The starting point of Blender++.
 #define GLFW_DLL
-#include "glad.h"
+#include "include/glad.h"
 #include <GLFW/glfw3.h>
 #include <iostream>
-#include "bpp/bpp.hpp"
+#include "include/bpp/bpp.hpp"
 
-int main(int argc, char **argv[]) {
+int main(int argc, char **argv) {
   glfwInit();
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -19,7 +19,7 @@ int main(int argc, char **argv[]) {
   {
     std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Failed to create GLFW window. Please make sure your graphics card supports OpenGL 4.6." << std::endl;
     glfwTerminate();
-    return 1;
+    return 9;
   }
 
   glfwMakeContextCurrent(start_window); //So we can get the OpenGL version
@@ -29,7 +29,7 @@ int main(int argc, char **argv[]) {
   if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
   {
     std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Failed to initialize GLAD. Try running this application on a different computer." << std::endl;
-    return -1;
+    return 8;
   }    
 
   while (!glfwWindowShouldClose(start_window)) //Render loop

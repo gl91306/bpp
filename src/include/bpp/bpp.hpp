@@ -1,6 +1,6 @@
 //bpp.hpp: The list of things that Blender++ uses
 #define GLFW_DLL
-#include "glad.h"
+#include "../glad.h"
 #include <GLFW/glfw3.h>
 #include <iostream>
 
