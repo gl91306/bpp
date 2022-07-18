@@ -1,0 +1,39 @@
+# Project: bpp
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+RES      = intermediate/bpp_private.res
+OBJ      = intermediate/main.o intermediate/glad.o intermediate/glfw.o $(RES)
+LINKOBJ  = intermediate/main.o intermediate/glad.o intermediate/glfw.o $(RES)
+LIBS     = -L"D:/src/_compilers/msys2/mingw64/x86_64-w64-mingw32/lib" -L"D:/bpp/_deps/glfw/_cmake_build/src" -mwindows _deps/glfw/_cmake_build/src/libglfw3.a -pg -g3
+INCS     = -I"D:/src/_compilers/msys2/mingw64/include" -I"D:/bpp/src/include"
+CXXINCS  = -I"D:/src/_compilers/msys2/mingw64/include" -I"D:/bpp/src/include"
+BIN      = build/bpp.exe
+CXXFLAGS = $(CXXINCS) -w -Wall -Wextra -pedantic -pg -g3 -fverbose-asm -Ofast -m64 -mavx2 -static-libstdc++ -static-libgcc -mavx2 -Ofast
+CFLAGS   = $(INCS) -w -Wall -Wextra -pedantic -pg -g3 -fverbose-asm -Ofast -m64 -mavx2 -static-libstdc++ -static-libgcc -mavx2 -Ofast
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+intermediate/main.o: src/main.cpp
+	$(CPP) -c src/main.cpp -o intermediate/main.o $(CXXFLAGS)
+
+intermediate/glad.o: _deps/glad/src/glad.c
+	$(CPP) -c _deps/glad/src/glad.c -o intermediate/glad.o $(CXXFLAGS)
+
+intermediate/glfw.o: src/functions/glfw.cpp
+	$(CPP) -c src/functions/glfw.cpp -o intermediate/glfw.o $(CXXFLAGS)
+
+intermediate/bpp_private.res: bpp_private.rc 
+	$(WINDRES) -i bpp_private.rc --input-format=rc -o intermediate/bpp_private.res -O coff 
+
