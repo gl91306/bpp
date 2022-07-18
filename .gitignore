@@ -1,2 +1,3 @@
 build/bpp.exe
 gmon.out
+obj/bpp.o

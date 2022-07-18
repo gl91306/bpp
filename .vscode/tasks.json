@@ -4,7 +4,7 @@
     {
       "label": "Build Blender++",
       "type": "shell",
-      "command": "g++.exe \"src/bpp.cpp\" \"src/glad.c\" -o \"build/bpp.exe\" -lglfw3 -lopengl32 -lglu32 -lgdi32 -luser32 -lkernel32 -w -Wall -Wextra -pedantic -pg -g3 -Ofast -mwindows -m64 -mavx2 -static-libstdc++ -static-libgcc -I\"src/include\";\"build/bpp.exe\"",
+      "command": "mingw32-make -f makefile.windows -j;\"build/bpp.exe\"",
       "problemMatcher": [
         "$gcc"
       ],
