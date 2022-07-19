@@ -6,6 +6,7 @@
 
 namespace bpp {
   namespace functions {
+    void check_params();
     void framebuffer_size_callback(GLFWwindow *window, int width, int height);
     void process_input(GLFWwindow *window);
   }

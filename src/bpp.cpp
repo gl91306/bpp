@@ -2,7 +2,6 @@
 #define GLFW_DLL
 #include "include/glad.h"
 #include <GLFW/glfw3.h>
-#include <boost/multiprecision/cpp_int.hpp>
 #include <iostream>
 #include "include/bpp/bpp.hpp"
 
@@ -54,14 +53,4 @@ int main() {
   glfwTerminate();
   std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] GLFW has been gracefully terminated. Exiting..." << std::endl;
   return 0;
-}
-
-void bpp::functions::process_input(GLFWwindow *window) { //Query GLFW whether relevant keys are pressed/released this frame and react accordingly
-  if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
-    glfwSetWindowShouldClose(window, true); //Escape obviously means "Quit".
-  }
-}
-
-void bpp::functions::framebuffer_size_callback(GLFWwindow *window, int width, int height) { //This gets called whenever the window gets resized
-    glViewport(0, 0, width, height); //Make sure the viewport is the same size as the window.
 }
