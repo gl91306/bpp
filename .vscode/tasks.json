@@ -20,7 +20,7 @@
     {
       "label": "Build Blender++ (for outsiders)",
       "type": "shell",
-      "command": "pacman -Syu --noconfirm;pacman -S mingw-w64-x86_64-toolchain --noconfirm;pacman -S mingw-w64-x86_64-glfw --noconfirm;pacman -S mingw-w64-x86_64-boost --noconfirm;setUpMissingDirsForBuild.bat;mingw32-make -f makefile.windows -j;\"build/bpp.exe\"",
+      "command": "pacman -Syu --noconfirm;pacman -S mingw-w64-x86_64-toolchain --noconfirm;pacman -S mingw-w64-x86_64-glfw --noconfirm;pacman -S mingw-w64-x86_64-boost --noconfirm;%BPP_setUpMissingDirsForBuild.bat;mingw32-make -f makefile.windows -j;\"build/bpp.exe\"",
       "problemMatcher": [
         "$gcc"
       ],
