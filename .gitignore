@@ -1,3 +1,5 @@
 build/bpp.exe
 gmon.out
 obj/bpp.o
+obj/bpp.res
+obj/glad.o

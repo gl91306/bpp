@@ -20,7 +20,7 @@
     {
       "label": "Build Blender++ (for outsiders)",
       "type": "shell",
-      "command": "pacman -Syu --noconfirm;pacman -S mingw-w64-x86_64-toolchain --noconfirm;pacman -S mingw-w64-x86_64-glfw --noconfirm;g++.exe \"src/bpp.cpp\" \"src/glad.c\" -o \"build/bpp.exe\" -Lglfw3 -Lopengl32 -Lglu32 -Lgdi32 -Luser32 -Lkernel32 -w -Wall -Wextra -pedantic -pg -g3 -Ofast -m64 -mavx2 -static-libstdc++ -static-libgcc -I\"src/include\";\"build/bpp.exe\"",
+      "command": "pacman -Syu --noconfirm;pacman -S mingw-w64-x86_64-toolchain --noconfirm;pacman -S mingw-w64-x86_64-glfw --noconfirm;mingw32-make -f makefile.windows -j;\"build/bpp.exe\"",
       "problemMatcher": [
         "$gcc"
       ],

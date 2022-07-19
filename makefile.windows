@@ -6,7 +6,8 @@ WINDRES = windres.exe
 RES = obj/bpp.res
 OBJ = obj/bpp.o obj/glad.o $(RES)
 LINKOBJ = obj/bpp.o obj/glad.o $(RES)
-LIBS = -L"%BPP_COMPILER%/mingw64/x86_64-w64-mingw32/lib" -mwindows -pg -g3
+LDLIBS = -lglfw3 -lopengl32 -lglu32 -lgdi32 -luser32 -lkernel32
+LIBSDIR = -L"%BPP_COMPILER%/mingw64/x86_64-w64-mingw32/lib" -mwindows -pg -g3
 INCS = -I"%BPP_COMPILER%/mingw64/include" -I"%BPP_COMPILER%\mingw64\include\c++\12.1.0" -I"%BPP_ROOT%/src/include"
 CXXINCS = -I"%BPP_COMPILER%/mingw64/include" -I"%BPP_COMPILER%\mingw64\include\c++\12.1.0" -I"%BPP_ROOT%/src/include"
 BIN = build/bpp.exe
@@ -22,13 +23,13 @@ clean: clean-custom
 	${RM} $(OBJ) $(BIN)
 
 $(BIN): $(OBJ)
-	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBSDIR) $(LDLIBS)
 
 obj/bpp.o: src/bpp.cpp
-	$(CPP) -c src/bpp.cpp -o obj/bpp.o $(CXXFLAGS)
+	$(CPP) -c src/bpp.cpp -o obj/bpp.o $(CXXFLAGS) $(LDLIBS)
 
 obj/glad.o: src/glad.c
-	$(CPP) -c src/glad.c -o obj/glad.o $(CXXFLAGS)
+	$(CPP) -c src/glad.c -o obj/glad.o $(CXXFLAGS) $(LDLIBS)
 
 obj/bpp.res: rsrc/bpp.rc
-	$(WINDRES) -i bpp.rc --input-format=rc -o obj/bpp.res -O coff
+	$(WINDRES) -i rsrc/bpp.rc --input-format=rc -o obj/bpp.res -O coff
