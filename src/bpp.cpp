@@ -1,17 +1,13 @@
-//bpp.c: The starting point of Blender++.
+//bpp.cpp: The starting point of Blender++.
 #define GLFW_DLL
 #include "include/glad.h"
 #include <GLFW/glfw3.h>
 #include <boost/multiprecision/cpp_int.hpp>
 #include <iostream>
-//#include "include/bpp/bpp.hpp"
-
-void framebuffer_size_callback(GLFWwindow *window, int width, int height);
-void processInput(GLFWwindow *window);
+#include "include/bpp/bpp.hpp"
 
 int main() {
-  //GLFW: Initialize and configure
-  glfwInit();
+  glfwInit(); //GLFW: Initialize and configure
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
@@ -19,19 +15,17 @@ int main() {
   glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
   #endif
 
-  //GLFW window creation
-  GLFWwindow *window = glfwCreateWindow(800, 600, "Blender++", NULL, NULL);
-  if (window == NULL) {
+  bpp::windows::start_window = glfwCreateWindow(800, 600, "Blender++", NULL, NULL); //GLFW window creation
+  if (bpp::windows::start_window == NULL) {
     std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Failed to create GLFW window. Please make sure your graphics card supports OpenGL 4.6, or run the executable with the --renderer-cpu parameter." << std::endl;
     glfwTerminate();
     return 1;
   }
   
-  glfwMakeContextCurrent(window);
-  glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+  glfwMakeContextCurrent(bpp::windows::start_window);
+  glfwSetFramebufferSizeCallback(bpp::windows::start_window, bpp::functions::framebuffer_size_callback);
 
-  //GLAD: Load all OpenGL function pointers
-  if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+  if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) { //GLAD: Load all OpenGL function pointers
     std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Failed to initialize GLAD. Try running this application on a different computer." << std::endl;
     return 2;
   }
@@ -44,17 +38,15 @@ int main() {
 
 
   //Render loop
-  while (!glfwWindowShouldClose(window)) {
-    //Input
-    processInput(window);
+  while (!glfwWindowShouldClose(bpp::windows::start_window)) {
+    bpp::functions::process_input(bpp::windows::start_window); //Process input
 
     //Render
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    //GLFW: Swap buffers and poll I/O events (keys pressed/released, mouse moved etc.)
-    glfwSwapBuffers(window);
-    glfwPollEvents();
+    glfwSwapBuffers(bpp::windows::start_window); //Swap buffers
+    glfwPollEvents(); //Poll I/O events (keys pressed/released, mouse moved etc.)
   }
 
   //Terminate.
@@ -64,74 +56,12 @@ int main() {
   return 0;
 }
 
-//Query GLFW whether relevant keys are pressed/released this frame and react accordingly
-void processInput(GLFWwindow *window) {
+void bpp::functions::process_input(GLFWwindow *window) { //Query GLFW whether relevant keys are pressed/released this frame and react accordingly
   if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
-    glfwSetWindowShouldClose(window, true);
+    glfwSetWindowShouldClose(window, true); //Escape obviously means "Quit".
   }
 }
 
-//This gets called whenever the window gets resized
-void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
-    //Make sure the viewport is the same size as the window.
-    glViewport(0, 0, width, height);
+void bpp::functions::framebuffer_size_callback(GLFWwindow *window, int width, int height) { //This gets called whenever the window gets resized
+    glViewport(0, 0, width, height); //Make sure the viewport is the same size as the window.
 }
-
-/*int main(int argc, char **argv) {
-  glfwInit();
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-  glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
-  #ifdef __APPLE__
-  glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-  #endif
-
-  start_window = glfwCreateWindow(800, 600, "Blender++", NULL, NULL);
-  if (start_window == NULL)
-  {
-    std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Failed to create GLFW window. Please make sure your graphics card supports OpenGL 4.6." << std::endl;
-    glfwTerminate();
-    return 9;
-  }
-
-  glfwMakeContextCurrent(start_window); //So we can get the OpenGL version
-  glfwSetFramebufferSizeCallback(start_window, framebuffer_size_callback);
-  std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Found OpenGL version " << glVersion << std::endl;
-
-  if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-  {
-    std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Failed to initialize GLAD. Try running this application on a different computer." << std::endl;
-    return 8;
-  }    
-
-  while (!glfwWindowShouldClose(start_window)) //Render loop
-  {
-    //Process input
-    process_input(start_window);
-
-    //Render the stuff to the screen
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    //GLFW: Swap buffers and poll I/O events
-    glfwSwapBuffers(start_window);
-    glfwPollEvents();
-  }
-
-  //Terminate GLFW
-  glfwTerminate();
-
-  std::cout << std::endl << "Blender++ returned 0." << std::endl;
-  return 0;
-}
-
-void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
-  std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Called framebuffer size callback" << std::endl;
-  glViewport(0, 0, width, height);
-}
-
-void process_input(GLFWwindow *window) {
-  if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
-    glfwSetWindowShouldClose(window, true);
-  }
-}*/
