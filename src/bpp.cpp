@@ -2,6 +2,7 @@
 #define GLFW_DLL
 #include "include/glad.h"
 #include <GLFW/glfw3.h>
+#include <boost/multiprecision/cpp_int.hpp>
 #include <iostream>
 //#include "include/bpp/bpp.hpp"
 
