@@ -1,11 +1,15 @@
 //bpp.cpp: The starting point of Blender++.
 #define GLFW_DLL
+
 #include "include/glad.h"
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include <string_view>
 #include "include/bpp/bpp.hpp"
 
-int main() {
+int main(int argc, char **argv) {
+  bpp::functions::check_params(argc, argv);
+
   glfwInit(); //GLFW: Initialize and configure
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
@@ -63,4 +67,15 @@ void bpp::functions::process_input(GLFWwindow *window) { //Query GLFW whether re
 
 void bpp::functions::framebuffer_size_callback(GLFWwindow *window, int width, int height) { //This gets called whenever the window gets resized
     glViewport(0, 0, width, height); //Make sure the viewport is the same size as the window.
+}
+
+void bpp::functions::check_params(int pargc, char **pargv) {
+  using namespace std::literals;
+
+  if (pargv[0] == "-h"sv || pargv[0] == "--help"sv) {
+    std::cout << "Help page for Blender++ v0.0.1.0" << std::endl;
+    std::cout << "List of commands: " << std::endl;
+    std::cout << "-h, --help            Displays this help page." << std::endl;
+    std::cout << "--renderer-X          Choose the rendering engine. X can be either 'gl1-0', " << std::endl;
+  }
 }
