@@ -7,11 +7,11 @@
 namespace bpp {
   namespace functions {
     void check_params();
-    void framebuffer_size_callback(GLFWwindow *window, int width, int height);
-    void process_input(GLFWwindow *window);
+    inline void framebuffer_size_callback(GLFWwindow *window, int width, int height);
+    inline void process_input(GLFWwindow *window);
   }
 
   namespace windows {
-    GLFWwindow *start_window;
+    extern GLFWwindow *start_window;
   }
 }

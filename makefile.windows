@@ -4,8 +4,8 @@ CPP = g++.exe -D__DEBUG__
 CC = gcc.exe -D__DEBUG__
 WINDRES = windres.exe
 RES = obj/bpp.res
-OBJ = obj/bpp.o obj/glad.o obj/process_input.o obj/framebuffer_size_callback.o $(RES)
-LINKOBJ = obj/bpp.o obj/glad.o obj/process_input.o obj/framebuffer_size_callback.o $(RES)
+OBJ = obj/bpp.o obj/glad.o obj/functions/process_input.o obj/functions/framebuffer_size_callback.o $(RES)
+LINKOBJ = obj/bpp.o obj/glad.o obj/functions/process_input.o obj/functions/framebuffer_size_callback.o $(RES)
 LDLIBS = -lglfw3 -lopengl32 -lglu32 -lgdi32 -luser32 -lkernel32
 LIBSDIR = -L"%BPP_COMPILER%/mingw64/x86_64-w64-mingw32/lib" -pg -g3
 INCS = -I"%BPP_COMPILER%/mingw64/include" -I"%BPP_COMPILER%\mingw64\include\c++\12.1.0" -I"%BPP_ROOT%/src/include"
@@ -29,13 +29,13 @@ obj/bpp.o: src/bpp.cpp
 	$(CPP) -c src/bpp.cpp -o obj/bpp.o $(CXXFLAGS) $(LDLIBS)
 
 obj/glad.o: src/glad.c
-	$(CPP) -c src/glad.c -o obj/glad.o $(CXXFLAGS) $(LDLIBS)
-
-obj/functions/framebuffer_size_callback.o: src/functions/framebuffer_size_callback.cpp
-	$(CPP) -c src/functions/framebuffer_size_callback.cpp -o obj/functions/framebuffer_size_callback.o $(CXXFLAGS) $(LDLIBS)
+	$(CC) -c src/glad.c -o obj/glad.o $(CXXFLAGS) $(LDLIBS)
 
 obj/functions/process_input.o: src/functions/process_input.cpp
 	$(CPP) -c src/functions/process_input.cpp -o obj/functions/process_input.o $(CXXFLAGS) $(LDLIBS)
+
+obj/functions/framebuffer_size_callback.o: src/functions/framebuffer_size_callback.cpp
+	$(CPP) -c src/functions/framebuffer_size_callback.cpp -o obj/functions/framebuffer_size_callback.o $(CXXFLAGS) $(LDLIBS)
 
 obj/bpp.res: rsrc/bpp.rc
 	$(WINDRES) -i rsrc/bpp.rc --input-format=rc -o obj/bpp.res -O coff

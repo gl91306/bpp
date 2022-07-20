@@ -3,3 +3,5 @@ gmon.out
 obj/bpp.o
 obj/bpp.res
 obj/glad.o
+obj/functions/framebuffer_size_callback.o
+obj/functions/process_input.o
