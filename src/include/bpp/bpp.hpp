@@ -17,6 +17,6 @@ namespace bpp {
   }
 
   namespace windows {
-    extern GLFWwindow *start_window;
+    GLFWwindow *start_window;
   }
 }
