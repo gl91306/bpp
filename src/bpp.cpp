@@ -79,6 +79,7 @@ int main(int argc, char *argv[]) {
   std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Terminating GLFW." << std::endl;
   glfwTerminate();
   std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] GLFW has been gracefully terminated. Exiting..." << std::endl;
+  std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated. " << std::endl;
   return 0;
 }
 
@@ -102,7 +103,8 @@ void bpp::functions::check_params(int pargc, char **pargv) {
     boost::program_options::options_description bpp_options_description("Blender++ Help");
     bpp_options_description.add_options()
       ("help", "Print help message")
-      ("errorhelp", "What an error means (0 for success, 1 for bla bla bla etc)");
+      ("errorhelp", "What an error means (0 for success, 1 for bla bla bla etc)")
+      ("errorhelp-{code}", "Displays the description for a specific error code");
 
     boost::program_options::variables_map bpp_variables_map;
     boost::program_options::store(boost::program_options::parse_command_line(pargc, pargv, bpp_options_description), bpp_variables_map);
@@ -119,7 +121,12 @@ void bpp::functions::check_params(int pargc, char **pargv) {
       std::cout << "1: Failed to create GLFW window. This usually means you either need a new computer with a better GPU or you should start the program with the '--renderer-cpu' argument." << std::endl;
       std::cout << "2: Failed to initialize GLAD. This problem has the same answer as error 1." << std::endl;
       std::cout << "3: Couldn't recognise an argument. Please make sure you run Blender++ with the correct arguments, run it with '--help' to learn more." << std::endl;
-      std::cout << std::endl << "If you get any other kind of error, please try reinstalling Blender++. Or try running it on a different computer. If none of these options work, you can reach out to me at HackerDaGreat57@gmail.com." << std::endl;
+      std::cout << std::endl << "If you get any other kind of error, please try reinstalling Blender++. Or try running it on a different computer. You can also try running the application with '--errorhelp-{your error code here}'. If none of these options work, you can reach out to me at HackerDaGreat57@gmail.com." << std::endl;
+      bpp::quit(0);
+    }
+
+    if (bpp_variables_map.count("errorhelp-0")) {
+      std::cout << "0: Success. (BTW this is the reason why early versions of Windows used to say \"Task failed successfully.\" until someone realized that meant to opposite of what it was supposed to mean." << std::endl;
       bpp::quit(0);
     }
   }
