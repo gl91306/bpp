@@ -1,14 +1,36 @@
-//bpp.cpp: The starting point of Blender++.
+//bpp.cpp: The source code for Blender++.
 #define GLFW_DLL
 
 #include "include/glad.h"
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <string_view>
-#include "include/bpp/bpp.hpp"
+#include <string>
+#include <cstring>
 
-int main(int argc, char **argv) {
-  bpp::functions::check_params(argc, argv);
+namespace bpp {
+  namespace variables {
+    short int active_renderer;
+  }
+
+  namespace functions {
+    void check_params(int pargc, char **pargv);
+    void framebuffer_size_callback(GLFWwindow *window, int width, int height);
+    void process_input(GLFWwindow *window);
+  }
+
+  namespace windows {
+    GLFWwindow *start_window;
+  }
+}
+
+
+int main(int argc, char *argv[]) {
+  //bpp::functions::check_params(argc, argv);
+
+  std::string s = argv[1];
+  //int i = strcmp(s, "-h");
+  std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] h " << s << std::endl;
 
   glfwInit(); //GLFW: Initialize and configure
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -70,12 +92,28 @@ void bpp::functions::framebuffer_size_callback(GLFWwindow *window, int width, in
 }
 
 void bpp::functions::check_params(int pargc, char **pargv) {
-  using namespace std::literals;
+  //using namespace std::literals;
+  //std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] pargv: " << pargv[1] << std::endl;
 
-  if (pargv[0] == "-h"sv || pargv[0] == "--help"sv) {
+  if (pargc > 1) {
+    if (strcmp(pargv[2], "-h") || strcmp(pargv[2], "--help") != 0) {
+      std::cout << "Help page for Blender++ v0.0.1.0" << std::endl;
+      std::cout << "List of commands: " << std::endl;
+      std::cout << "-h, --help            Displays this help page." << std::endl;
+      std::cout << "--renderer-X          Choose the rendering engine. X can be either 'gl1-0', " << std::endl;
+    }
+
+    /*if (pargv[1] == "--help") {
+      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] yeet " << std::endl;
+    }*/
+  }
+
+  /*using namespace std::literals;
+
+  if (pargv[2] == "-h"sv || pargv[2] == "--help"sv) {
     std::cout << "Help page for Blender++ v0.0.1.0" << std::endl;
     std::cout << "List of commands: " << std::endl;
     std::cout << "-h, --help            Displays this help page." << std::endl;
     std::cout << "--renderer-X          Choose the rendering engine. X can be either 'gl1-0', " << std::endl;
-  }
+  }*/
 }

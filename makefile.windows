@@ -11,8 +11,8 @@ LIBSDIR = -L"%BPP_COMPILER%/mingw64/x86_64-w64-mingw32/lib" -pg -g3
 INCS = -I"%BPP_COMPILER%/mingw64/include" -I"%BPP_COMPILER%\mingw64\include\c++\12.1.0" -I"%BPP_ROOT%/src/include"
 CXXINCS = -I"%BPP_COMPILER%/mingw64/include" -I"%BPP_COMPILER%\mingw64\include\c++\12.1.0" -I"%BPP_ROOT%/src/include"
 BIN = build/bpp.exe
-CXXFLAGS = $(CXXINCS) -w -Wall -Wextra -pedantic -pg -g3 -Ofast -m64 -mavx2 -static-libstdc++ -static-libgcc
-CFLAGS = $(INCS) -w -Wall -Wextra -pedantic -pg -g3 -Ofast -m64 -mavx2 -static-libstdc++ -static-libgcc
+CXXFLAGS = $(CXXINCS) -w -Wall -Wextra -pedantic -fpermissive -pg -g3 -Ofast -m64 -mavx2 -static-libstdc++ -static-libgcc
+CFLAGS = $(INCS) -w -Wall -Wextra -pedantic -fpermissive -pg -g3 -Ofast -m64 -mavx2 -static-libstdc++ -static-libgcc
 RM = rm.exe -f
 
 .PHONY: all all-before all-after clean clean-custom
