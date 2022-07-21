@@ -58,8 +58,8 @@ int main(int argc, char *argv[]) {
 
   //Print information about detected hardware
   std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Found OpenGL version " << std::string((char *)glGetString(GL_VERSION)) << std::endl;
-  std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Found OpenGL vendor " << std::string((char *)glGetString(GL_VENDOR)) << std::endl;
-  std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Found OpenGL renderer " << std::string((char *)glGetString(GL_RENDERER)) << std::endl;
+  std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Found GPU vendor " << std::string((char *)glGetString(GL_VENDOR)) << std::endl;
+  std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Rendering on GPU " << std::string((char *)glGetString(GL_RENDERER)) << std::endl;
   std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Found GLSL version " << std::string((char *)glGetString(GL_SHADING_LANGUAGE_VERSION)) << std::endl;
 
 
@@ -100,22 +100,22 @@ void bpp::functions::framebuffer_size_callback(GLFWwindow *window, int width, in
 
 void bpp::functions::check_params(int pargc, char **pargv) {
   try {
-    boost::program_options::options_description bpp_options_description("Blender++ Help");
-    bpp_options_description.add_options()
+    boost::program_options::options_description options_description("Blender++ Help");
+    options_description.add_options()
       ("help", "Print help message")
       ("errorhelp", "What an error means (0 for success, 1 for bla bla bla etc)")
       ("errorhelp-{code}", "Displays the description for a specific error code");
 
-    boost::program_options::variables_map bpp_variables_map;
-    boost::program_options::store(boost::program_options::parse_command_line(pargc, pargv, bpp_options_description), bpp_variables_map);
-    boost::program_options::notify(bpp_variables_map);
+    boost::program_options::variables_map variables_map;
+    boost::program_options::store(boost::program_options::parse_command_line(pargc, pargv, options_description), variables_map);
+    boost::program_options::notify(variables_map);
 
-    if (bpp_variables_map.count("help")) {
-      std::cout << bpp_options_description << std::endl;
+    if (variables_map.count("help")) {
+      std::cout << options_description << std::endl;
       bpp::quit(0);
     }
 
-    if (bpp_variables_map.count("errorhelp")) {
+    if (variables_map.count("errorhelp")) {
       std::cout << "There are different types of errors in Blender++. And it is generally good computer programming practice to assign an ID or code to every error. The types of errors in Blender++ are listed below." << std::endl;
       std::cout << "0: Success. (BTW this is the reason why early versions of Windows used to say \"Task failed successfully.\" until someone realized that meant to opposite of what it was supposed to mean." << std::endl;
       std::cout << "1: Failed to create GLFW window. This usually means you either need a new computer with a better GPU or you should start the program with the '--renderer-cpu' argument." << std::endl;
@@ -125,7 +125,7 @@ void bpp::functions::check_params(int pargc, char **pargv) {
       bpp::quit(0);
     }
 
-    if (bpp_variables_map.count("errorhelp-0")) {
+    if (variables_map.count("errorhelp-0")) {
       std::cout << "0: Success. (BTW this is the reason why early versions of Windows used to say \"Task failed successfully.\" until someone realized that meant to opposite of what it was supposed to mean." << std::endl;
       bpp::quit(0);
     }
