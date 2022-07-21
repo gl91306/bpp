@@ -18,6 +18,7 @@ namespace bpp {
   }
 
   namespace functions {
+    void check_params(int pargc, char **pargv);
     void framebuffer_size_callback(GLFWwindow *window, int width, int height);
     void process_input(GLFWwindow *window);
   }
@@ -30,25 +31,7 @@ namespace bpp {
 }
 
 int main(int argc, char *argv[]) {
-  try {
-    boost::program_options::options_description bpp_options_description("Test123");
-    bpp_options_description.add_options()
-      ("help", "Print help message");
-
-    boost::program_options::variables_map bpp_variables_map;
-    boost::program_options::store(boost::program_options::parse_command_line(argc, argv, bpp_options_description), bpp_variables_map);
-    boost::program_options::notify(bpp_variables_map);
-
-    if (bpp_variables_map.count("help")) {
-      std::cout << bpp_options_description << std::endl;
-      bpp::quit(0);
-    }
-  }
-
-  catch(std::exception &e) {
-    std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Error:  " << e.what() << std::endl;
-    bpp::quit(1);
-  }
+  bpp::functions::check_params(argc, argv);
 
   glfwInit(); //GLFW: Initialize and configure
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -112,4 +95,37 @@ void bpp::functions::process_input(GLFWwindow *window) { //Query GLFW whether re
 
 void bpp::functions::framebuffer_size_callback(GLFWwindow *window, int width, int height) { //This gets called whenever the window gets resized
   glViewport(0, 0, width, height); //Make sure the viewport is the same size as the window.
+}
+
+void bpp::functions::check_params(int pargc, char **pargv) {
+  try {
+    boost::program_options::options_description bpp_options_description("Blender++ Help");
+    bpp_options_description.add_options()
+      ("help", "Print help message")
+      ("errorhelp", "What an error means (0 for success, 1 for bla bla bla etc)");
+
+    boost::program_options::variables_map bpp_variables_map;
+    boost::program_options::store(boost::program_options::parse_command_line(pargc, pargv, bpp_options_description), bpp_variables_map);
+    boost::program_options::notify(bpp_variables_map);
+
+    if (bpp_variables_map.count("help")) {
+      std::cout << bpp_options_description << std::endl;
+      bpp::quit(0);
+    }
+
+    if (bpp_variables_map.count("errorhelp")) {
+      std::cout << "There are different types of errors in Blender++. And it is generally good computer programming practice to assign an ID or code to every error. The types of errors in Blender++ are listed below." << std::endl;
+      std::cout << "0: Success. (BTW this is the reason why early versions of Windows used to say \"Task failed successfully.\" until someone realized that meant to opposite of what it was supposed to mean." << std::endl;
+      std::cout << "1: Failed to create GLFW window. This usually means you either need a new computer with a better GPU or you should start the program with the '--renderer-cpu' argument." << std::endl;
+      std::cout << "2: Failed to initialize GLAD. This problem has the same answer as error 1." std::endl;
+      std::cout << "3: Couldn't recognise an argument. Please make sure you run Blender++ with the correct arguments, run it with '--help' to learn more." << std::endl;
+      std::cout << std::endl << "If you get any other kind of error, please try reinstalling Blender++. Or try running it on a different computer. If none of these options work, you can reach out to me at HackerDaGreat57@gmail.com." << std::endl;
+      bpp::quit(0);
+    }
+  }
+
+  catch(std::exception &e) {
+    std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Error: " << e.what() << std::endl;
+    bpp::quit(3);
+  }
 }
