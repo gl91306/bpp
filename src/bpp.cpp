@@ -117,7 +117,7 @@ void bpp::functions::check_params(int pargc, char **pargv) {
       std::cout << "There are different types of errors in Blender++. And it is generally good computer programming practice to assign an ID or code to every error. The types of errors in Blender++ are listed below." << std::endl;
       std::cout << "0: Success. (BTW this is the reason why early versions of Windows used to say \"Task failed successfully.\" until someone realized that meant to opposite of what it was supposed to mean." << std::endl;
       std::cout << "1: Failed to create GLFW window. This usually means you either need a new computer with a better GPU or you should start the program with the '--renderer-cpu' argument." << std::endl;
-      std::cout << "2: Failed to initialize GLAD. This problem has the same answer as error 1." std::endl;
+      std::cout << "2: Failed to initialize GLAD. This problem has the same answer as error 1." << std::endl;
       std::cout << "3: Couldn't recognise an argument. Please make sure you run Blender++ with the correct arguments, run it with '--help' to learn more." << std::endl;
       std::cout << std::endl << "If you get any other kind of error, please try reinstalling Blender++. Or try running it on a different computer. If none of these options work, you can reach out to me at HackerDaGreat57@gmail.com." << std::endl;
       bpp::quit(0);
