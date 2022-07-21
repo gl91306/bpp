@@ -3,7 +3,11 @@
 
 #include "include/glad.h"
 #include <GLFW/glfw3.h>
+
+#include <boost/program_options.hpp>
+
 #include <iostream>
+#include <iterator>
 #include <string_view>
 #include <string>
 #include <cstring>
@@ -14,7 +18,6 @@ namespace bpp {
   }
 
   namespace functions {
-    void check_params(int pargc, char **pargv);
     void framebuffer_size_callback(GLFWwindow *window, int width, int height);
     void process_input(GLFWwindow *window);
   }
@@ -22,15 +25,30 @@ namespace bpp {
   namespace windows {
     GLFWwindow *start_window;
   }
+
+  void quit(int retval);
 }
 
-
 int main(int argc, char *argv[]) {
-  //bpp::functions::check_params(argc, argv);
+  try {
+    boost::program_options::options_description bpp_options_description("Test123");
+    bpp_options_description.add_options()
+      ("help", "Print help message");
 
-  std::string s = argv[1];
-  //int i = strcmp(s, "-h");
-  std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] h " << s << std::endl;
+    boost::program_options::variables_map bpp_variables_map;
+    boost::program_options::store(boost::program_options::parse_command_line(argc, argv, bpp_options_description), bpp_variables_map);
+    boost::program_options::notify(bpp_variables_map);
+
+    if (bpp_variables_map.count("help")) {
+      std::cout << bpp_options_description << std::endl;
+      bpp::quit(0);
+    }
+  }
+
+  catch(std::exception &e) {
+    std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Error:  " << e.what() << std::endl;
+    bpp::quit(1);
+  }
 
   glfwInit(); //GLFW: Initialize and configure
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -81,6 +99,11 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
+void bpp::quit(int retval) {
+  std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated. " << std::endl;
+  exit(0);
+}
+
 void bpp::functions::process_input(GLFWwindow *window) { //Query GLFW whether relevant keys are pressed/released this frame and react accordingly
   if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
     glfwSetWindowShouldClose(window, true); //Escape obviously means "Quit".
@@ -88,32 +111,5 @@ void bpp::functions::process_input(GLFWwindow *window) { //Query GLFW whether re
 }
 
 void bpp::functions::framebuffer_size_callback(GLFWwindow *window, int width, int height) { //This gets called whenever the window gets resized
-    glViewport(0, 0, width, height); //Make sure the viewport is the same size as the window.
-}
-
-void bpp::functions::check_params(int pargc, char **pargv) {
-  //using namespace std::literals;
-  //std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] pargv: " << pargv[1] << std::endl;
-
-  if (pargc > 1) {
-    if (strcmp(pargv[2], "-h") || strcmp(pargv[2], "--help") != 0) {
-      std::cout << "Help page for Blender++ v0.0.1.0" << std::endl;
-      std::cout << "List of commands: " << std::endl;
-      std::cout << "-h, --help            Displays this help page." << std::endl;
-      std::cout << "--renderer-X          Choose the rendering engine. X can be either 'gl1-0', " << std::endl;
-    }
-
-    /*if (pargv[1] == "--help") {
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] yeet " << std::endl;
-    }*/
-  }
-
-  /*using namespace std::literals;
-
-  if (pargv[2] == "-h"sv || pargv[2] == "--help"sv) {
-    std::cout << "Help page for Blender++ v0.0.1.0" << std::endl;
-    std::cout << "List of commands: " << std::endl;
-    std::cout << "-h, --help            Displays this help page." << std::endl;
-    std::cout << "--renderer-X          Choose the rendering engine. X can be either 'gl1-0', " << std::endl;
-  }*/
+  glViewport(0, 0, width, height); //Make sure the viewport is the same size as the window.
 }
