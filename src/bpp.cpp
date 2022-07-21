@@ -131,8 +131,8 @@ void bpp::functions::check_params(int pargc, char **pargv) {
     }
   }
 
-  catch(std::exception &e) {
-    std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Error: " << e.what() << std::endl;
+  catch(std::exception &exception_check_params) {
+    std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Error: " << exception_check_params.what() << std::endl;
     bpp::quit(3);
   }
 }
