@@ -43,17 +43,15 @@ int main(int argc, char *argv[]) {
 
   bpp::windows::start_window = glfwCreateWindow(800, 600, "Blender++", NULL, NULL); //GLFW window creation
   if (bpp::windows::start_window == NULL) {
-    std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Failed to create GLFW window. Please make sure your graphics card supports OpenGL 4.6, or run the executable with the --renderer-cpu parameter." << std::endl;
     glfwTerminate();
-    return 1;
+    bpp::quit(1);
   }
   
   glfwMakeContextCurrent(bpp::windows::start_window);
   glfwSetFramebufferSizeCallback(bpp::windows::start_window, bpp::functions::framebuffer_size_callback);
 
   if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) { //GLAD: Load all OpenGL function pointers
-    std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Failed to initialize GLAD. Try running this application on a different computer." << std::endl;
-    return 2;
+    bpp::quit(2);
   }
 
   //Print information about detected hardware
@@ -79,13 +77,29 @@ int main(int argc, char *argv[]) {
   std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Terminating GLFW." << std::endl;
   glfwTerminate();
   std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] GLFW has been gracefully terminated. Exiting..." << std::endl;
-  std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated. " << std::endl;
-  return 0;
+  bpp::quit(0);
 }
 
 void bpp::quit(int retval) {
-  std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated. " << std::endl;
-  exit(0);
+  switch (retval) {
+    case 0:
+      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated, returned error code 0 (nothing went wrong, successful exit). " << std::endl;
+      break;
+    case 1:
+      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated, returned error code 1 (failed to create GLFW window. Run Blender++ with --errorhelp-1 for possible fixes)." << std::endl;
+      break;
+    case 2:
+      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated, returned error code 2 (failed to initialize GLAD. Run Blender++ with --errorhelp-2 for possible fixes)." << std::endl;
+      break;
+    case 3:
+      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated, returned error code 3 (bad arguments. Run Blender++ with --errorhelp-3 for possible fixes). " << std::endl;
+      break;
+    default:
+      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated with unknown error. " << std::endl;
+      break;
+  }
+
+  exit(retval);
 }
 
 void bpp::functions::process_input(GLFWwindow *window) { //Query GLFW whether relevant keys are pressed/released this frame and react accordingly
@@ -102,9 +116,9 @@ void bpp::functions::check_params(int pargc, char **pargv) {
   try {
     boost::program_options::options_description options_description("Blender++ Help");
     options_description.add_options()
-      ("help", "Print help message")
-      ("errorhelp", "What an error means (0 for success, 1 for bla bla bla etc)")
-      ("errorhelp-{code}", "Displays the description for a specific error code");
+      ("help", "Print help message (the thing you're reading right now)")
+      ("errorhelp", "Print basic information about all error codes")
+      ("errorhelp 0", "Displays a longer description for a specific error code with possible solutions");
 
     boost::program_options::variables_map variables_map;
     boost::program_options::store(boost::program_options::parse_command_line(pargc, pargv, options_description), variables_map);
@@ -116,17 +130,32 @@ void bpp::functions::check_params(int pargc, char **pargv) {
     }
 
     if (variables_map.count("errorhelp")) {
-      std::cout << "There are different types of errors in Blender++. And it is generally good computer programming practice to assign an ID or code to every error. The types of errors in Blender++ are listed below." << std::endl;
-      std::cout << "0: Success. (BTW this is the reason why early versions of Windows used to say \"Task failed successfully.\" until someone realized that meant to opposite of what it was supposed to mean." << std::endl;
-      std::cout << "1: Failed to create GLFW window. This usually means you either need a new computer with a better GPU or you should start the program with the '--renderer-cpu' argument." << std::endl;
-      std::cout << "2: Failed to initialize GLAD. This problem has the same answer as error 1." << std::endl;
-      std::cout << "3: Couldn't recognise an argument. Please make sure you run Blender++ with the correct arguments, run it with '--help' to learn more." << std::endl;
-      std::cout << std::endl << "If you get any other kind of error, please try reinstalling Blender++. Or try running it on a different computer. You can also try running the application with '--errorhelp-{your error code here}'. If none of these options work, you can reach out to me at HackerDaGreat57@gmail.com." << std::endl;
+      std::cout << "There are different types of errors in Blender++. And it is generally good computer programming practice to assign an ID or code to every error. The types of errors in Blender++ are listed below. Run the application with --errorhelp-{your error code here} to learn about possible solutions for your error." << std::endl;
+      std::cout << "0: Success. Nothing to worry about." << std::endl;
+      std::cout << "1: Failed to create GLFW window." << std::endl;
+      std::cout << "2: Failed to initialize GLAD." << std::endl;
+      std::cout << "3: Couldn't recognise an argument." << std::endl;
+      std::cout << std::endl << "If you get any other kind of error, please try reinstalling Blender++. If none of these options work, you can reach out to me at HackerDaGreat57@gmail.com." << std::endl << std::endl;
       bpp::quit(0);
     }
 
     if (variables_map.count("errorhelp-0")) {
-      std::cout << "0: Success. (BTW this is the reason why early versions of Windows used to say \"Task failed successfully.\" until someone realized that meant to opposite of what it was supposed to mean." << std::endl;
+      std::cout << "Error 0: Success. (BTW this is the reason why early versions of Windows used to say \"Task failed successfully.\" until someone realized that meant to opposite of what it was supposed to mean." << std::endl;
+      bpp::quit(0);
+    }
+
+    if (variables_map.count("errorhelp-1")) {
+      std::cout << "Error 1: Failed to create GLFW window. This means that your graphics card (aka GPU) doesn't support OpenGL 4.6. Try rerunning Blender++ with --renderer-cpu." << std::endl;
+      bpp::quit(0);
+    }
+
+    if (variables_map.count("errorhelp-2")) {
+      std::cout << "Error 2: Failed to initialize GLAD. This means that your computer either does not have a graphics card (aka GPU) or is too old. Try running the application with --renderer-cpu." << std::endl;
+      bpp::quit(0);
+    }
+
+    if (variables_map.count("errorhelp-3")) {
+      std::cout << "Error 3: Invalid arguments. This means that one of the application's command-line settings (the thigns that are seperated by spaces and begin with --) are incorrect and probably have a spelling error. Check your arguments carefully and make sure that not a single letter is off. Remember, the command-line doesn't have autocorrect!" << std::endl;
       bpp::quit(0);
     }
   }

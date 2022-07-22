@@ -52,6 +52,19 @@
     "complex": "cpp",
     "source_location": "cpp",
     "iomanip": "cpp",
-    "sstream": "cpp"
+    "sstream": "cpp",
+    "bitset": "cpp",
+    "condition_variable": "cpp",
+    "list": "cpp",
+    "map": "cpp",
+    "set": "cpp",
+    "optional": "cpp",
+    "ratio": "cpp",
+    "mutex": "cpp",
+    "semaphore": "cpp",
+    "stop_token": "cpp",
+    "thread": "cpp",
+    "typeindex": "cpp",
+    "variant": "cpp"
   }
 }
