@@ -14,6 +14,10 @@
 #include <string>
 #include <cstring>
 
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 namespace bpp {
   namespace variables {
     short int active_renderer;
@@ -34,6 +38,20 @@ namespace bpp {
 }
 
 int main(int argc, char *argv[]) {
+  #ifdef _WIN32
+  //HANDLE win_consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+  //SetConsoleMode(win_consoleHandle, ENABLE_VIRTUAL_TERMINAL_PROCESSING);
+  //std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] \x1b[31mThis text has restored the foreground color only." << std::endl;
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  HANDLE hConsole_c = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE, 0, NULL, CONSOLE_TEXTMODE_BUFFER, NULL);
+  SetConsoleActiveScreenBuffer(hConsole_c);
+  DWORD dwMode = 0;
+  GetConsoleMode(hConsole_c, &dwMode);
+  dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+  SetConsoleMode(hConsole_c, dwMode);
+  std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] \x1b[31mThis text has restored the foreground color only." << std::endl;
+  #endif
+
   bpp::functions::check_params(argc, argv);
   bpp::quit(0);
 }
@@ -116,6 +134,9 @@ void bpp::start(short int renderer) {
     case 7:
       std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Direct3D 12 renderer still under construction! Sorry :(" << std::endl;
       break;
+    
+    case 8:
+      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] TUI renderer still under construction! Sorry :(" << std::endl;
   }
 }
 
@@ -161,17 +182,18 @@ void bpp::functions::check_params(int pargc, char **pargv) {
       ("help", "Print help message (the thing you're reading right now)")
       ("errorhelp", "Print basic information about all error codes")
       ("errorcode", boost::program_options::value(&errorcode) , "Displays a longer description for a specific error code with possible solutions. Replace 'arg' with your error code")
-      ("renderer-cpu", "Start with CPU renderer")
-      ("renderer-gl46", "Start with OpenGL 4.6 renderer")
-      ("renderer-vulkan", "Start with Vulkan 1.3 renderer")
+      ("renderer-cpu", "Use CPU renderer")
+      ("renderer-tui", "Use the TUI renderer (severely limited functionality)")
+      ("renderer-gl46", "Use OpenGL 4.6 renderer")
+      ("renderer-vulkan", "Use Vulkan 1.3 renderer")
       #ifdef __APPLE__
-      ("renderer-metal", "Start with Metal renderer (macOS only)")
+      ("renderer-metal", "Use Metal renderer (macOS only)")
       #endif
       #ifdef _WIN32
-      ("renderer-dx9", "Start with Direct3D 9 renderer (Windows only)")
-      ("renderer-dx10", "Start with Direct3D 10 renderer (Windows only)")
-      ("renderer-dx11", "Start with Direct3D 11 renderer (Windows only)")
-      ("renderer-dx12", "Start with Direct3D 12 renderer (Windows only)")
+      ("renderer-d3d9", "Use Direct3D 9 renderer (Windows only)")
+      ("renderer-d3d10", "Use Direct3D 10 renderer (Windows only)")
+      ("renderer-d3d11", "Use Direct3D 11 renderer (Windows only)")
+      ("renderer-d3d12", "Use Direct3D 12 renderer (Windows only)")
       #endif
       ; //Sorry I didn't know how to format this LOL
 
@@ -181,6 +203,11 @@ void bpp::functions::check_params(int pargc, char **pargv) {
 
     if (variables_map.count("renderer-cpu")) {
       bpp:start(0);
+      bpp::quit(0);
+    }
+
+    if (variables_map.count("renderer-tui")) {
+      bpp::start(8);
       bpp::quit(0);
     }
 
@@ -197,37 +224,52 @@ void bpp::functions::check_params(int pargc, char **pargv) {
     if (variables_map.count("renderer-metal")) {
       #ifdef __APPLE__
       bpp::start(3);
-      #endif
-      #if defined(_WIN32) && defined(__unix__) && defined(__linux__)
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] The Metal renderer is for Apple devices only, sorry. " << std::endl;
+      #else
+      std::cout << "The Metal renderer is for Apple devices only, sorry." << std::endl;
       #endif
       bpp::quit(0);
     }
 
-    #ifdef _WIN32
-    if (variables_map.count("renderer-dx9")) {
+    if (variables_map.count("renderer-d3d9")) {
+      #ifdef _WIN32
       bpp::start(4);
+      #else
+      std::cout << "The Direct3D 9 renderer is for Windows devices only, sorry." << std::endl;
+      #endif
       bpp::quit(0);
     }
 
-    if (variables_map.count("renderer-dx10")) {
+    if (variables_map.count("renderer-d3d10")) {
+      #ifdef _WIN32
       bpp::start(5);
+      #else
+      std::cout << "The Direct3D 10 renderer is for Windows devices only, sorry." << std::endl;
+      #endif
       bpp::quit(0);
     }
 
-    if (variables_map.count("renderer-dx11")) {
+    if (variables_map.count("renderer-d3d11")) {
+      #ifdef _WIN32
       bpp::start(6);
+      #else
+      std::cout << "The Direct3D 11 renderer is for Windows devices only, sorry." << std::endl;
+      #endif
       bpp::quit(0);
     }
 
-    if (variables_map.count("renderer-dx12")) {
+    if (variables_map.count("renderer-d3d12")) {
+      #ifdef _WIN32
       bpp::start(7);
+      #else
+      std::cout << "The Direct3D 12 renderer is for Windows devices only, sorry." << std::endl;
+      #endif
       bpp::quit(0);
     }
-    #endif
 
     if (variables_map.count("help")) {
-      std::cout << options_description << std::endl;
+      //Refer to 'newhelpmsg.txt' and 'orighelpmsg.txt'
+      //Text converted with https://tomeko.net/online_tools/cpp_text_escape.php?lang=en
+      std::cout << "Blender++ v0.0.1.0 Help:" << std::endl << "  --help                Print help message (the thing you're reading right now)" << std::endl << "  --errorhelp           Print basic information about all error codes" << std::endl << "  --errorcode arg       Displays a longer description for a specific error code with possible solutions. Replace 'arg' with your error code" << std::endl << "" << std::endl << "  --renderer-cpu        Use CPU renderer" << std::endl << "  --renderer-tui        Use the TUI (Text User Interface via NCURSES) renderer (severely limited functionality)" << std::endl << "  --renderer-gl46       Use OpenGL 4.6 renderer" << std::endl << "  --renderer-vulkan     Use Vulkan 1.3 renderer" << std::endl << "  --renderer-metal      Use Metal renderer (macOS only)" << std::endl << "  --renderer-d3d9       Use Direct3D 9 renderer (Windows only)" << std::endl << "  --renderer-d3d10      Use Direct3D 10 renderer (Windows only)" << std::endl << "  --renderer-d3d11      Use Direct3D 11 renderer (Windows only)" << std::endl << "  --renderer-d3d12      Use Direct3D 12 renderer (Windows only)" << std::endl << "" << std::endl << "Please visit https://github.com/HackerDaGreat57/bpp for more information, source code, and additional help." << std::endl;
       bpp::quit(0);
     }
 
