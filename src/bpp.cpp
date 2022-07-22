@@ -113,12 +113,14 @@ void bpp::functions::framebuffer_size_callback(GLFWwindow *window, int width, in
 }
 
 void bpp::functions::check_params(int pargc, char **pargv) {
+  int errorcode;
+
   try {
     boost::program_options::options_description options_description("Blender++ Help");
     options_description.add_options()
       ("help", "Print help message (the thing you're reading right now)")
       ("errorhelp", "Print basic information about all error codes")
-      ("errorhelp 0", "Displays a longer description for a specific error code with possible solutions");
+      ("errorcode", boost::program_options::value(&errorcode) , "Displays a longer description for a specific error code with possible solutions. Replace 'arg' with your error code");
 
     boost::program_options::variables_map variables_map;
     boost::program_options::store(boost::program_options::parse_command_line(pargc, pargv, options_description), variables_map);
@@ -130,7 +132,7 @@ void bpp::functions::check_params(int pargc, char **pargv) {
     }
 
     if (variables_map.count("errorhelp")) {
-      std::cout << "There are different types of errors in Blender++. And it is generally good computer programming practice to assign an ID or code to every error. The types of errors in Blender++ are listed below. Run the application with --errorhelp-{your error code here} to learn about possible solutions for your error." << std::endl;
+      std::cout << "There are different types of errors in Blender++. And it is generally good computer programming practice to assign an ID or code to every error. The types of errors in Blender++ are listed below. Run the application with --errorhelp {your error code here} to learn about possible solutions for your error." << std::endl;
       std::cout << "0: Success. Nothing to worry about." << std::endl;
       std::cout << "1: Failed to create GLFW window." << std::endl;
       std::cout << "2: Failed to initialize GLAD." << std::endl;
@@ -139,24 +141,25 @@ void bpp::functions::check_params(int pargc, char **pargv) {
       bpp::quit(0);
     }
 
-    if (variables_map.count("errorhelp-0")) {
-      std::cout << "Error 0: Success. (BTW this is the reason why early versions of Windows used to say \"Task failed successfully.\" until someone realized that meant to opposite of what it was supposed to mean." << std::endl;
-      bpp::quit(0);
-    }
+    if (variables_map.count("errorcode")) {
+      switch (errorcode) {
+        case 0:
+          std::cout << "Error 0: Success. (BTW this is the reason why early versions of Windows used to say \"Task failed successfully.\" until someone realized that meant to opposite of what it was supposed to mean." << std::endl;
+          bpp::quit(0);
+        case 1:
+          std::cout << "Error 1: Failed to create GLFW window. This means that your graphics card (aka GPU) doesn't support OpenGL 4.6. Try rerunning Blender++ with --renderer-cpu." << std::endl;
+          bpp::quit(0);
+        case 2:
+          std::cout << "Error 2: Failed to initialize GLAD. This means that your computer either does not have a graphics card (aka GPU) or is too old. Try running the application with --renderer-cpu." << std::endl;
+          bpp::quit(0);
+        case 3:
+          std::cout << "Error 3: Invalid arguments. This means that one of the application's command-line settings (the thigns that are seperated by spaces and begin with --) are incorrect and probably have a spelling error. Check your arguments carefully and make sure that not a single letter is off. Remember, the command-line doesn't have autocorrect!" << std::endl;
+          bpp::quit(0);
 
-    if (variables_map.count("errorhelp-1")) {
-      std::cout << "Error 1: Failed to create GLFW window. This means that your graphics card (aka GPU) doesn't support OpenGL 4.6. Try rerunning Blender++ with --renderer-cpu." << std::endl;
-      bpp::quit(0);
-    }
-
-    if (variables_map.count("errorhelp-2")) {
-      std::cout << "Error 2: Failed to initialize GLAD. This means that your computer either does not have a graphics card (aka GPU) or is too old. Try running the application with --renderer-cpu." << std::endl;
-      bpp::quit(0);
-    }
-
-    if (variables_map.count("errorhelp-3")) {
-      std::cout << "Error 3: Invalid arguments. This means that one of the application's command-line settings (the thigns that are seperated by spaces and begin with --) are incorrect and probably have a spelling error. Check your arguments carefully and make sure that not a single letter is off. Remember, the command-line doesn't have autocorrect!" << std::endl;
-      bpp::quit(0);
+        default:
+          std::cout << "Invalid error code. Try again with the right number this time" << std::endl;
+          bpp::quit(0);
+      }
     }
   }
 
