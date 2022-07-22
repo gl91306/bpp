@@ -113,3 +113,4 @@ build/tk86.dll
 build/zlib1.dll
 build/libgettextlib-0-21.dll
 gmon.out
+src/bpp.exe

@@ -19,10 +19,6 @@ namespace bpp {
     short int active_renderer;
   }
 
-  namespace support {
-    void launch(void);
-  }
-
   namespace functions {
     int check_params(int pargc, char **pargv);
     void framebuffer_size_callback(GLFWwindow *window, int width, int height);
@@ -33,15 +29,15 @@ namespace bpp {
     GLFWwindow *start_window;
   }
 
-  short int running_mode = 0;
   void start_standard(void);
+  void start_support(void);
   void quit(short int retval);
 }
 
 int main(int argc, char *argv[]) {
-  bpp::running_mode = bpp::functions::check_params(argc, argv);
+  int running_mode = bpp::functions::check_params(argc, argv);
 
-  switch (bpp::running_mode) {
+  switch (running_mode) {
     case 0:
       bpp::start_standard();
       break;
@@ -101,7 +97,7 @@ void bpp::start_standard(void) {
   bpp::quit(0);
 }
 
-void bpp::quit(int retval) {
+void bpp::quit(short int retval) {
   switch (retval) {
     case 0:
       std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated, returned error code 0 (nothing went wrong, successful exit). " << std::endl;
@@ -133,11 +129,12 @@ void bpp::functions::framebuffer_size_callback(GLFWwindow *window, int width, in
   glViewport(0, 0, width, height); //Make sure the viewport is the same size as the window.
 }
 
-void bpp::functions::check_params(int pargc, char **pargv) {
+int bpp::functions::check_params(int pargc, char **pargv) {
   short int cp_retval;
+  short int errorcode;
 
   try {
-    boost::program_options::options_description options_description("Blender++ Help");
+    boost::program_options::options_description options_description("Blender++ v0.0.1.0 Help");
     options_description.add_options()
       ("help", "Print help message (the thing you're reading right now)")
       ("errorhelp", "Print basic information about all error codes")
@@ -184,7 +181,7 @@ void bpp::functions::check_params(int pargc, char **pargv) {
       }
 
       if (variables_map.count("support")) {
-        cp_retval = 1;
+        return 1;
         //bpp::support::launch();
       }
     }
@@ -195,10 +192,10 @@ void bpp::functions::check_params(int pargc, char **pargv) {
     bpp::quit(3);
   }
 
-  return (short int)cp_retval;
+  return 0;
 }
 
-void bpp::support::launch(void) {
+void bpp::start_support(void) {bpp::quit(0);
   initscr();
   printw("Hello Support!");
   refresh();
