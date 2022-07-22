@@ -2,6 +2,22 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Build Blender++ (without running)",
+      "type": "shell",
+      "command": "mingw32-make -f makefile.windows -j4;echo \"Done\"",
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      }
+    },
+    {
       "label": "Build Blender++",
       "type": "shell",
       "command": "mingw32-make -f makefile.windows -j4;\"build/bpp.exe\"",
@@ -20,7 +36,7 @@
     {
       "label": "Build Blender++ (for outsiders)",
       "type": "shell",
-      "command": "pacman -Syu --noconfirm;pacman -S mingw-w64-x86_64-toolchain --noconfirm;pacman -S mingw-w64-x86_64-glfw --noconfirm;pacman -S mingw-w64-x86_64-boost --noconfirm;%BPP_ROOT%/setUpMissingDirsForBuild.bat;xcopy \"%BPP_COMPILER%/mingw64/bin/*.dll\" \"%BPP_ROOT%/build\" /f /g /y;mingw32-make -f makefile.windows -j4;\"build/bpp.exe\"",
+      "command": "pacman -Syu --noconfirm;pacman -S mingw-w64-x86_64-toolchain --noconfirm;pacman -S mingw-w64-x86_64-glfw --noconfirm;pacman -S mingw-w64-x86_64-boost --noconfirm;pacman -S mingw-w64-x86_64-ncurses --noconfirm;%BPP_ROOT%/setUpMissingDirsForBuild.bat;xcopy \"%BPP_COMPILER%/mingw64/bin/*.dll\" \"%BPP_ROOT%/build\" /f /g /y;mingw32-make -f makefile.windows -j4;\"build/bpp.exe\"",
       "problemMatcher": [
         "$gcc"
       ],
