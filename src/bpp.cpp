@@ -6,6 +6,8 @@
 
 #include <boost/program_options.hpp>
 
+#include <ncursesw/curses.h>
+
 #include <iostream>
 #include <iterator>
 #include <string_view>
@@ -17,8 +19,12 @@ namespace bpp {
     short int active_renderer;
   }
 
+  namespace support {
+    void launch(void);
+  }
+
   namespace functions {
-    void check_params(int pargc, char **pargv);
+    int check_params(int pargc, char **pargv);
     void framebuffer_size_callback(GLFWwindow *window, int width, int height);
     void process_input(GLFWwindow *window);
   }
@@ -27,12 +33,27 @@ namespace bpp {
     GLFWwindow *start_window;
   }
 
-  void quit(int retval);
+  short int running_mode = 0;
+  void start_standard(void);
+  void quit(short int retval);
 }
 
 int main(int argc, char *argv[]) {
-  bpp::functions::check_params(argc, argv);
+  bpp::running_mode = bpp::functions::check_params(argc, argv);
 
+  switch (bpp::running_mode) {
+    case 0:
+      bpp::start_standard();
+      break;
+    case 1:
+      bpp::start_support();
+      break;
+  }
+
+  bpp::quit(0);
+}
+
+void bpp::start_standard(void) {
   glfwInit(); //GLFW: Initialize and configure
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
@@ -113,14 +134,15 @@ void bpp::functions::framebuffer_size_callback(GLFWwindow *window, int width, in
 }
 
 void bpp::functions::check_params(int pargc, char **pargv) {
-  int errorcode;
+  short int cp_retval;
 
   try {
     boost::program_options::options_description options_description("Blender++ Help");
     options_description.add_options()
       ("help", "Print help message (the thing you're reading right now)")
       ("errorhelp", "Print basic information about all error codes")
-      ("errorcode", boost::program_options::value(&errorcode) , "Displays a longer description for a specific error code with possible solutions. Replace 'arg' with your error code");
+      ("errorcode", boost::program_options::value(&errorcode) , "Displays a longer description for a specific error code with possible solutions. Replace 'arg' with your error code")
+      ("support", "Launches the command-line-based support manual");
 
     boost::program_options::variables_map variables_map;
     boost::program_options::store(boost::program_options::parse_command_line(pargc, pargv, options_description), variables_map);
@@ -153,12 +175,17 @@ void bpp::functions::check_params(int pargc, char **pargv) {
           std::cout << "Error 2: Failed to initialize GLAD. This means that your computer either does not have a graphics card (aka GPU) or is too old. Try running the application with --renderer-cpu." << std::endl;
           bpp::quit(0);
         case 3:
-          std::cout << "Error 3: Invalid arguments. This means that one of the application's command-line settings (the thigns that are seperated by spaces and begin with --) are incorrect and probably have a spelling error. Check your arguments carefully and make sure that not a single letter is off. Remember, the command-line doesn't have autocorrect!" << std::endl;
+          std::cout << "Error 3: Invalid arguments. This means that one of the application's command-line settings (the things that are seperated by spaces and begin with --) are incorrect and probably have a spelling error. Check your arguments carefully and make sure that not a single letter is off. Remember, the command-line doesn't have autocorrect!" << std::endl;
           bpp::quit(0);
 
         default:
           std::cout << "Invalid error code. Try again with the right number this time" << std::endl;
           bpp::quit(0);
+      }
+
+      if (variables_map.count("support")) {
+        cp_retval = 1;
+        //bpp::support::launch();
       }
     }
   }
@@ -167,4 +194,16 @@ void bpp::functions::check_params(int pargc, char **pargv) {
     std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Error: " << exception_check_params.what() << std::endl;
     bpp::quit(3);
   }
+
+  return (short int)cp_retval;
+}
+
+void bpp::support::launch(void) {
+  initscr();
+  printw("Hello Support!");
+  refresh();
+  getch();
+  endwin();
+
+  bpp::quit(0);
 }
