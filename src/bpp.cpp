@@ -35,7 +35,6 @@ namespace bpp {
 
 int main(int argc, char *argv[]) {
   bpp::functions::check_params(argc, argv);
-
   bpp::quit(0);
 }
 
@@ -99,7 +98,23 @@ void bpp::start(short int renderer) {
       break;
 
     case 3:
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Metal renderer still under construction! Sorry :( " << std::endl;
+      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Metal renderer still under construction! Sorry :(" << std::endl;
+      break;
+    
+    case 4:
+      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Direct3D 9 renderer still under construction! Sorry :(" << std::endl;
+      break;
+
+    case 5:
+      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Direct3D 10 renderer still under construction! Sorry :(" << std::endl;
+      break;
+
+    case 6:
+      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Direct3D 11 renderer still under construction! Sorry :(" << std::endl;
+      break;
+
+    case 7:
+      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Direct3D 12 renderer still under construction! Sorry :(" << std::endl;
       break;
   }
 }
@@ -179,12 +194,15 @@ void bpp::functions::check_params(int pargc, char **pargv) {
       bpp::quit(0);
     }
 
-    #ifdef __APPLE__
     if (variables_map.count("renderer-metal")) {
+      #ifdef __APPLE__
       bpp::start(3);
+      #endif
+      #if defined(_WIN32) && defined(__unix__) && defined(__linux__)
+      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] The Metal renderer is for Apple devices only, sorry. " << std::endl;
+      #endif
       bpp::quit(0);
     }
-    #endif
 
     #ifdef _WIN32
     if (variables_map.count("renderer-dx9")) {
