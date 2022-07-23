@@ -39,17 +39,13 @@ namespace bpp {
 
 int main(int argc, char *argv[]) {
   #ifdef _WIN32
-  //HANDLE win_consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-  //SetConsoleMode(win_consoleHandle, ENABLE_VIRTUAL_TERMINAL_PROCESSING);
-  //std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] \x1b[31mThis text has restored the foreground color only." << std::endl;
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  HANDLE hConsole_c = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE, 0, NULL, CONSOLE_TEXTMODE_BUFFER, NULL);
-  SetConsoleActiveScreenBuffer(hConsole_c);
-  DWORD dwMode = 0;
-  GetConsoleMode(hConsole_c, &dwMode);
-  dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
-  SetConsoleMode(hConsole_c, dwMode);
-  std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] \x1b[31mThis text has restored the foreground color only." << std::endl;
+  HANDLE win_hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  HANDLE win_hConsole_custom = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE, 0, NULL, CONSOLE_TEXTMODE_BUFFER, NULL);
+  SetConsoleActiveScreenBuffer(win_hConsole_custom);
+  DWORD win_consoleMode = 0;
+  GetConsoleMode(win_hConsole_custom, &win_consoleMode);
+  win_consoleMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+  SetConsoleMode(win_hConsole_custom, win_consoleMode);
   #endif
 
   bpp::functions::check_params(argc, argv);
@@ -59,7 +55,7 @@ int main(int argc, char *argv[]) {
 void bpp::start(short int renderer) {
   switch (renderer) {
     case 0:
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] CPU renderer is still under construction. Sorry!" << std::endl;
+      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] \x1b[4mCPU renderer is still under construction. Sorry!" << std::endl;
       bpp::quit(0);
       break;
     
