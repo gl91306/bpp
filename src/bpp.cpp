@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
   GetConsoleMode(win_hConsole_custom, &win_consoleMode);
   win_consoleMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
   SetConsoleMode(win_hConsole_custom, win_consoleMode);
-  #endif
+  #endif //See https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
 
   bpp::functions::check_params(argc, argv);
   bpp::quit(0);
@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
 void bpp::start(short int renderer) {
   switch (renderer) {
     case 0:
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] \x1b[4mCPU renderer is still under construction. Sorry!" << std::endl;
+      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] \x1b[38;2;255;174;201mCPU renderer is still under construction. Sorry!" << std::endl;
       bpp::quit(0);
       break;
     
@@ -151,7 +151,7 @@ void bpp::quit(short int retval) {
       std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated, returned error code 3 (bad arguments. Run Blender++ with --errorhelp-3 for possible fixes). " << std::endl;
       break;
     default:
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated with unknown error. " << std::endl;
+      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated with unknown error." << std::endl;
       break;
   }
 

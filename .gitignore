@@ -114,3 +114,4 @@ build/zlib1.dll
 build/libgettextlib-0-21.dll
 gmon.out
 src/bpp.exe
+ascii_color_codes.png
