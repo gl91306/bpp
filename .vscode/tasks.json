@@ -48,22 +48,6 @@
         "showReuseMessage": false,
         "clear": true
       }
-    },
-    {
-      "label": "Build Blender++ Installer",
-      "type": "shell",
-      "command": "cd installer;makensis [option | installer.nsi | -]",
-      "problemMatcher": [
-        "$gcc"
-      ],
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": true,
-        "panel": "shared",
-        "showReuseMessage": false,
-        "clear": true
-      }
     }
   ]
 }
