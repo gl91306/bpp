@@ -25,7 +25,7 @@ namespace bpp {
 
   namespace text_colors {
     namespace foreground {
-      std::string alice_blue = "\x1b[38;2;240;248;255m";
+      std::string alice_blue = "\x1b[38;2;255;0;255m";
 
     }
   }
