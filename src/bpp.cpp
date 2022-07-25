@@ -23,6 +23,13 @@ namespace bpp {
     short int active_renderer;
   }
 
+  namespace text_colors {
+    namespace foreground {
+      std::string alice_blue = "\x1b[38;2;240;248;255m";
+
+    }
+  }
+
   namespace functions {
     void check_params(int pargc, char **pargv);
     void framebuffer_size_callback(GLFWwindow *window, int width, int height);
@@ -48,7 +55,7 @@ int main(int argc, char *argv[]) {
   SetConsoleMode(win_hConsole_custom, win_consoleMode);
   #endif //See https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797 or ANSI.md
 
-  std::cout << "\x1b[38;2;69;249;239m\x1b[48;2;0;0;0m{Blender++ Core}\x1b[0m [\x1b[4m\x1b[m" << __FILE__ << "\x1b[0m:" << __LINE__ << "] a" << std::endl;
+  std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "]" << bpp::text_colors::foreground::alice_blue << " a" << std::endl;
 
   bpp::functions::check_params(argc, argv);
   std::cout << "Next time you run Blender++, make sure to pass an argument this time like --renderer-gl." << std::endl;
