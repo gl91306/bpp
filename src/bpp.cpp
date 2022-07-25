@@ -28,6 +28,9 @@ namespace bpp {
     namespace foreground {
       std::string alice_blue = "\x1b[38;2;240;248;255m";
       std::string pale_amaranth_pink = "\x1b[38;2;221;190;195m";
+      std::string amaranth_pink = "\x1b[38;2;241;156;187m";
+      std::string bright_amaranth_pink = "\x1b[38;2;255;53;94m";
+      std::string amaranth = "\x1b[38;2;229;43;80m";
     }
   }
 
@@ -150,12 +153,15 @@ void bpp::start(short int renderer) {
 }
 
 void bpp::tests::clr(void) {
-  std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Beginning color tests." << std::endl;
+  std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Beginning color tests." << std::endl << std::endl;
 
   std::cout << bpp::text_colors::foreground::alice_blue << "Alice blue" << std::endl;
   std::cout << bpp::text_colors::foreground::pale_amaranth_pink << "Pale amaranth pink" << std::endl;
+  std::cout << bpp::text_colors::foreground::amaranth_pink << "Amaranth pink" << std::endl;
+  std::cout << bpp::text_colors::foreground::bright_amaranth_pink << "Bright amaranth pink" << std::endl;
+  std::cout << bpp::text_colors::foreground::amaranth << "Amaranth" << std::endl;
 
-  std::cout << bpp::text_colors::reset;
+  std::cout << bpp::text_colors::reset << std::endl;
   bpp::quit(0);
 }
 
