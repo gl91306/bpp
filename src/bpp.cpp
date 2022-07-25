@@ -24,10 +24,15 @@ namespace bpp {
   }
 
   namespace text_colors {
+    std::string reset = "\x1b[0m";
     namespace foreground {
-      std::string alice_blue = "\x1b[38;2;255;0;255m";
-
+      std::string alice_blue = "\x1b[38;2;240;248;255m";
+      std::string pale_amaranth_pink = "\x1b[38;2;221;190;195m";
     }
+  }
+
+  namespace tests {
+    void clr(void);
   }
 
   namespace functions {
@@ -54,8 +59,6 @@ int main(int argc, char *argv[]) {
   win_consoleMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
   SetConsoleMode(win_hConsole_custom, win_consoleMode);
   #endif //See https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797 or ANSI.md
-
-  std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "]" << bpp::text_colors::foreground::alice_blue << " a" << std::endl;
 
   bpp::functions::check_params(argc, argv);
   std::cout << "Next time you run Blender++, make sure to pass an argument this time like --renderer-gl." << std::endl;
@@ -146,6 +149,15 @@ void bpp::start(short int renderer) {
   }
 }
 
+void bpp::tests::clr(void) {
+  std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Beginning color tests." << std::endl;
+
+  std::cout << bpp::text_colors::foreground::alice_blue << "Alice blue" << std::endl;
+  std::cout << bpp::text_colors::foreground::pale_amaranth_pink << "Pale amaranth pink" << std::endl;
+
+  bpp::quit(0);
+}
+
 void bpp::quit(short int retval) {
   switch (retval) {
     case 0:
@@ -197,7 +209,8 @@ void bpp::functions::check_params(int pargc, char **pargv) {
       ("renderer-d3d9", "Use Direct3D 9 renderer (Windows only)")
       ("renderer-d3d10", "Use Direct3D 10 renderer (Windows only)")
       ("renderer-d3d11", "Use Direct3D 11 renderer (Windows only)")
-      ("renderer-d3d12", "Use Direct3D 12 renderer (Windows only)");
+      ("renderer-d3d12", "Use Direct3D 12 renderer (Windows only)")
+      ("clr-test", "Test the color printing system to make sure that it works");
 
     boost::program_options::variables_map variables_map;
     boost::program_options::store(boost::program_options::parse_command_line(pargc, pargv, options_description), variables_map);
@@ -284,7 +297,7 @@ void bpp::functions::check_params(int pargc, char **pargv) {
     if (variables_map.count("help")) {
       //Refer to 'newhelpmsg.txt' and 'orighelpmsg.txt'
       //Text converted with https://tomeko.net/online_tools/cpp_text_escape.php?lang=en
-      //std::cout << options_description << std::endl;
+      std::cout << options_description << std::endl;
       //std::cout << "Blender++ v0.0.1.0 Help:" << std::endl << "  --help                Print help message (the thing you're reading right now)" << std::endl << "  --errorhelp           Print basic information about all error codes" << std::endl << "  --errorcode arg       Displays a longer description for a specific error code with possible solutions. Replace 'arg' with your error code" << std::endl << "" << std::endl << "  --renderer-cpu        Use CPU renderer" << std::endl << "  --renderer-tui        Use the TUI (Text User Interface via NCURSES) renderer (severely limited functionality)" << std::endl << "  --renderer-gl46       Use OpenGL 4.6 renderer" << std::endl << "  --renderer-vulkan     Use Vulkan 1.3 renderer" << std::endl << "  --renderer-metal      Use Metal renderer (macOS only)" << std::endl << "  --renderer-d3d9       Use Direct3D 9 renderer (Windows only)" << std::endl << "  --renderer-d3d10      Use Direct3D 10 renderer (Windows only)" << std::endl << "  --renderer-d3d11      Use Direct3D 11 renderer (Windows only)" << std::endl << "  --renderer-d3d12      Use Direct3D 12 renderer (Windows only)" << std::endl << "" << std::endl << "Please visit https://github.com/HackerDaGreat57/bpp for more information, source code, and additional help." << std::endl;
       bpp::quit(0);
     }
@@ -318,6 +331,11 @@ void bpp::functions::check_params(int pargc, char **pargv) {
           std::cout << "Invalid error code. Try again with the right number this time" << std::endl;
           bpp::quit(0);
       }
+    }
+
+    if (variables_map.count("clr-test")) {
+      bpp::tests::clr();
+      bpp::quit(0);
     }
   }
 

@@ -66,5 +66,15 @@
     "thread": "cpp",
     "typeindex": "cpp",
     "variant": "cpp"
+  },
+  "saveAndRun": {
+    "commands": [
+      {
+        "match": ".*",
+        "cmd": "mingw32-make -f makefile.windows -j4",
+        "useShortcut": false,
+        "silent": true
+      }
+    ]
   }
 }
