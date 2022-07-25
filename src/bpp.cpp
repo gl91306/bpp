@@ -155,6 +155,7 @@ void bpp::tests::clr(void) {
   std::cout << bpp::text_colors::foreground::alice_blue << "Alice blue" << std::endl;
   std::cout << bpp::text_colors::foreground::pale_amaranth_pink << "Pale amaranth pink" << std::endl;
 
+  std::cout << bpp::text_colors::reset;
   bpp::quit(0);
 }
 
