@@ -32,6 +32,10 @@ namespace bpp {
       std::string bright_amaranth_pink = "\x1b[38;2;255;53;94m";
       std::string amaranth = "\x1b[38;2;229;43;80m";
     }
+
+    namespace background {
+      //Put stuff here later
+    }
   }
 
   namespace tests {
