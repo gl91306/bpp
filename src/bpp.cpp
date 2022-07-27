@@ -31,6 +31,10 @@ namespace bpp {
       std::string amaranth_pink = "\x1b[38;2;241;156;187m";
       std::string bright_amaranth_pink = "\x1b[38;2;255;53;94m";
       std::string amaranth = "\x1b[38;2;229;43;80m";
+      std::string amaranth_magenta = "\x1b[38;2;237;60;202m";
+      std::string amaranth_cerise = "\x1b[38;2;205;38;130m";
+      std::string amaranth_purple = "\x1b[38;2;171;39;79m";
+      std::string amaranth_deep_purple = "\x1b[38;2;159;43;104m";
     }
 
     namespace background {
@@ -164,6 +168,10 @@ void bpp::tests::clr(void) {
   std::cout << bpp::text_colors::foreground::amaranth_pink << "Amaranth pink" << std::endl;
   std::cout << bpp::text_colors::foreground::bright_amaranth_pink << "Bright amaranth pink" << std::endl;
   std::cout << bpp::text_colors::foreground::amaranth << "Amaranth" << std::endl;
+  std::cout << bpp::text_colors::foreground::amaranth_magenta << "Amaranth magenta" << std::endl;
+  std::cout << bpp::text_colors::foreground::amaranth_cerise << "Amaranth cerise" << std::endl;
+  std::cout << bpp::text_colors::foreground::amaranth_purple << "Amaranth purple" << std::endl;
+  std::cout << bpp::text_colors::foreground::amaranth_deep_purple << "Amaranth deep purple" << std::endl;
 
   std::cout << bpp::text_colors::reset << std::endl;
   bpp::quit(0);
