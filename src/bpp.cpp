@@ -57,12 +57,12 @@ namespace bpp {
     }
   }
 
-  void start(short int renderer);
+  void start(signed short int renderer);
   void quit(short int retval);
 }
 
 int main(int argc, char *argv[]) {
-  #ifdef _WIN32
+  #ifdef _WIN32 //Windows-specific code in order to enable 24-bit console coloring
   HANDLE win_hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
   HANDLE win_hConsole_custom = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE, 0, NULL, CONSOLE_TEXTMODE_BUFFER, NULL);
   SetConsoleActiveScreenBuffer(win_hConsole_custom);
@@ -73,12 +73,27 @@ int main(int argc, char *argv[]) {
   #endif //See https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797 or ANSI.md
 
   bpp::functions::check_params(argc, argv);
-  std::cout << "Next time you run Blender++, make sure to pass an argument this time like --renderer-gl." << std::endl;
-  bpp::quit(0);
+  //The code ahead will only run if the user didn't specify any parameters.
+  bpp::start(-1);
+  return 0;
 }
 
-void bpp::start(short int renderer) {
+void bpp::start(signed short int renderer) {
   switch (renderer) {
+    case -1:
+      initscr();
+
+      #ifdef _WIN32
+      printw("Please re-run Blender++ with the --renderer-cpu argument OR use (double-click) the start.bat script.\n\nPress any key to continue...");
+      #else
+      printw("Please re-run Blender++ with the --renderer-cpu argument OR use the start.sh script.\n\nPress any key to continue...");
+      #endif
+
+      refresh();
+      getch();
+      endwin();
+      break;
+
     case 0:
       std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] \x1b[38;2;255;174;201mCPU renderer is still under construction. Sorry!" << std::endl;
       bpp::quit(0);
@@ -216,7 +231,7 @@ void bpp::functions::gl::framebuffer_size_callback(GLFWwindow *window, int width
 
 void bpp::functions::check_params(int pargc, char **pargv) {
   short int errorcode;
-  short int renderer;
+  signed short int renderer;
 
   try {
     boost::program_options::options_description options_description("Blender++ v0.0.1.0 Help");

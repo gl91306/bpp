@@ -22,6 +22,11 @@
 					"line": 25,
 					"column": 0,
 					"label": "Namespace tree"
+				},
+				{
+					"line": 63,
+					"column": 0,
+					"label": "[int] Main function"
 				}
 			]
 		}
