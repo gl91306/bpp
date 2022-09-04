@@ -25,10 +25,6 @@
 
 //The Blender++ namespace tree
 namespace bpp {
-  namespace variables {
-    short int active_renderer;
-  }
-
   namespace text_colors {
     std::string reset = "\x1b[0m";
     namespace foreground {
@@ -44,7 +40,7 @@ namespace bpp {
     }
 
     namespace background {
-      //Put stuff here later
+      //Basically just copypasta the foreground colors when we finish with those
     }
   }
 
@@ -54,12 +50,11 @@ namespace bpp {
 
   namespace functions {
     void check_params(int pargc, char **pargv);
-    void framebuffer_size_callback(GLFWwindow *window, int width, int height);
-    void process_input(GLFWwindow *window);
-  }
 
-  namespace windows {
-    GLFWwindow *start_window;
+    namespace gl {
+      void framebuffer_size_callback(GLFWwindow *window, int width, int height);
+      void process_input(GLFWwindow *window);
+    }
   }
 
   void start(short int renderer);
@@ -98,14 +93,15 @@ void bpp::start(short int renderer) {
       glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
       #endif
 
-      bpp::windows::start_window = glfwCreateWindow(800, 600, "Blender++", NULL, NULL); //GLFW window creation
-      if (bpp::windows::start_window == NULL) {
+      GLFWwindow *start_window;
+      start_window = glfwCreateWindow(800, 600, "Blender++", NULL, NULL); //GLFW window creation
+      if (start_window == NULL) {
         glfwTerminate();
         bpp::quit(1);
       }
     
-      glfwMakeContextCurrent(bpp::windows::start_window);
-      glfwSetFramebufferSizeCallback(bpp::windows::start_window, bpp::functions::framebuffer_size_callback);
+      glfwMakeContextCurrent(start_window);
+      glfwSetFramebufferSizeCallback(start_window, bpp::functions::gl::framebuffer_size_callback);
 
       if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) { //GLAD: Load all OpenGL function pointers
         bpp::quit(2);
@@ -119,14 +115,14 @@ void bpp::start(short int renderer) {
 
 
       //Render loop
-      while (!glfwWindowShouldClose(bpp::windows::start_window)) {
-        bpp::functions::process_input(bpp::windows::start_window); //Process input
+      while (!glfwWindowShouldClose(start_window)) {
+        bpp::functions::gl::process_input(start_window); //Process input
 
         //Render
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glfwSwapBuffers(bpp::windows::start_window); //Swap buffers
+        glfwSwapBuffers(start_window); //Swap buffers
         glfwPollEvents(); //Poll I/O events (keys pressed/released, mouse moved etc.)
       }
 
@@ -208,13 +204,13 @@ void bpp::quit(short int retval) {
   exit(retval);
 }
 
-void bpp::functions::process_input(GLFWwindow *window) { //Query GLFW whether relevant keys are pressed/released this frame and react accordingly
+void bpp::functions::gl::process_input(GLFWwindow *window) { //Query GLFW whether relevant keys are pressed/released this frame and react accordingly
   if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
     glfwSetWindowShouldClose(window, true); //Escape obviously means "Quit".
   }
 }
 
-void bpp::functions::framebuffer_size_callback(GLFWwindow *window, int width, int height) { //This gets called whenever the window gets resized
+void bpp::functions::gl::framebuffer_size_callback(GLFWwindow *window, int width, int height) { //This gets called whenever the window gets resized
   glViewport(0, 0, width, height); //Make sure the viewport is the same size as the window.
 }
 
