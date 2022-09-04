@@ -1,7 +1,5 @@
 # Blender++
-An experimental C++ application that is meant to replace all the big dudes who sell software for $600 a year. I believe that computer software was meant to be free and open, and some desperate people from the 70's decided to unnecessarily monetize it.
-
-I know we all have to make a buck or two, but I really don't think software is the way to do that.
+A *somewhat experimental* C++ application that can do (well, is *supposed* to do) everything a computer is capable of. That means basically all the programs you currently have installed on your computer conveniently packed into one application. There's a long, **long** way to go until we reach that checkpoint, but I'm just doing what I can for now.
 
 ## How to build from source 🛠️
 1. Make sure you have the latest version of [`msys2`](https://www.msys2.org/) installed.
@@ -12,3 +10,6 @@ I know we all have to make a buck or two, but I really don't think software is t
 6. **Once you ran the `(for outsiders)` script at least once (and let it finish) then you can use the regular `Build Blender++` task.** Most "errors" thrown while running this are nothing serious and can safely be ignored.
 
 Apple Macintosh/Linux compatibility is planned but not guaranteed (for now). Make a PR please!
+
+## Why did you make this project?
+This application is meant to replace all the overpriced proprietary software out there that doesn't give you any freedom. I believe that computer software was meant to be free and open, and some desperate people from 1969 ([yes, literally](https://en.wikipedia.org/wiki/Proprietary_software#Origin)) decided to unnecessarily close monetize it. I know we all have to make a buck or two, but I really don't think software is the way to do that.
