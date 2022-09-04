@@ -1,6 +1,10 @@
 //bpp.cpp: The source code for Blender++.
+//Make sure to install the Bookmarks extention the Visual Studio Code Marketplace. (The one with the blue icon.)
+
+//Defines
 #define GLFW_DLL
 
+//Includes
 #include "include/glad.h"
 #include <GLFW/glfw3.h>
 
@@ -14,10 +18,12 @@
 #include <string>
 #include <cstring>
 
+//Platform-specific includes
 #ifdef _WIN32
 #include <windows.h>
 #endif
 
+//The Blender++ namespace tree
 namespace bpp {
   namespace variables {
     short int active_renderer;
@@ -43,7 +49,7 @@ namespace bpp {
   }
 
   namespace tests {
-    void clr(void);
+    void color(void);
   }
 
   namespace functions {
@@ -160,7 +166,7 @@ void bpp::start(short int renderer) {
   }
 }
 
-void bpp::tests::clr(void) {
+void bpp::tests::color(void) {
   std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Beginning color tests." << std::endl << std::endl;
 
   std::cout << bpp::text_colors::foreground::alice_blue << "Alice blue" << std::endl;
@@ -190,6 +196,9 @@ void bpp::quit(short int retval) {
       break;
     case 3:
       std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated, returned error code 3 (bad arguments. Run Blender++ with --errorhelp-3 for possible fixes). " << std::endl;
+      break;
+    case 4:
+      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated, returned an exception." << std::endl;
       break;
     default:
       std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated with unknown error." << std::endl;
@@ -317,12 +326,11 @@ void bpp::functions::check_params(int pargc, char **pargv) {
       //Refer to 'newhelpmsg.txt' and 'orighelpmsg.txt'
       //Text converted with https://tomeko.net/online_tools/cpp_text_escape.php?lang=en
       std::cout << options_description << std::endl;
-      //std::cout << "Blender++ v0.0.1.0 Help:" << std::endl << "  --help                Print help message (the thing you're reading right now)" << std::endl << "  --errorhelp           Print basic information about all error codes" << std::endl << "  --errorcode arg       Displays a longer description for a specific error code with possible solutions. Replace 'arg' with your error code" << std::endl << "" << std::endl << "  --renderer-cpu        Use CPU renderer" << std::endl << "  --renderer-tui        Use the TUI (Text User Interface via NCURSES) renderer (severely limited functionality)" << std::endl << "  --renderer-gl46       Use OpenGL 4.6 renderer" << std::endl << "  --renderer-vulkan     Use Vulkan 1.3 renderer" << std::endl << "  --renderer-metal      Use Metal renderer (macOS only)" << std::endl << "  --renderer-d3d9       Use Direct3D 9 renderer (Windows only)" << std::endl << "  --renderer-d3d10      Use Direct3D 10 renderer (Windows only)" << std::endl << "  --renderer-d3d11      Use Direct3D 11 renderer (Windows only)" << std::endl << "  --renderer-d3d12      Use Direct3D 12 renderer (Windows only)" << std::endl << "" << std::endl << "Please visit https://github.com/HackerDaGreat57/bpp for more information, source code, and additional help." << std::endl;
       bpp::quit(0);
     }
 
     if (variables_map.count("errorhelp")) {
-      std::cout << "There are different types of errors in Blender++. And it is generally good computer programming practice to assign an ID or code to every error. The types of errors in Blender++ are listed below. Run the application with --errorhelp {your error code here} to learn about possible solutions for your error." << std::endl;
+      std::cout << "There are different types of errors in Blender++. And it is generally good computer programming practice to assign an ID or code to every error. The types of errors in Blender++ are listed below. Run the application with \"--errorhelp {your error code here}\" to learn about possible solutions for your error." << std::endl;
       std::cout << "0: Success. Nothing to worry about." << std::endl;
       std::cout << "1: Failed to create GLFW window." << std::endl;
       std::cout << "2: Failed to initialize GLAD." << std::endl;
@@ -334,7 +342,7 @@ void bpp::functions::check_params(int pargc, char **pargv) {
     if (variables_map.count("errorcode")) {
       switch (errorcode) {
         case 0:
-          std::cout << "Error 0: Success. (BTW this is the reason why early versions of Windows used to say \"Task failed successfully.\" until someone realized that meant to opposite of what it was supposed to mean." << std::endl;
+          std::cout << "Error 0: Success. (By the way, this is the reason why early versions of Windows used to say \"Task failed successfully.\" until someone realized that meant to opposite of what it was supposed to mean.)" << std::endl;
           bpp::quit(0);
         case 1:
           std::cout << "Error 1: Failed to create GLFW window. This means that your graphics card (aka GPU) doesn't support OpenGL 4.6. Try rerunning Blender++ with --renderer-cpu." << std::endl;
@@ -353,7 +361,7 @@ void bpp::functions::check_params(int pargc, char **pargv) {
     }
 
     if (variables_map.count("clr-test")) {
-      bpp::tests::clr();
+      bpp::tests::color();
       bpp::quit(0);
     }
   }
@@ -362,6 +370,4 @@ void bpp::functions::check_params(int pargc, char **pargv) {
     std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Error: " << exception_check_params.what() << std::endl;
     bpp::quit(3);
   }
-
-  //return 0;
 }
