@@ -70,9 +70,10 @@ int main(int argc, char *argv[]) {
   GetConsoleMode(win_hConsole_custom, &win_consoleMode);
   win_consoleMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
   SetConsoleMode(win_hConsole_custom, win_consoleMode);
-  #endif //See https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797 or ANSI.md
+  #endif //See https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797 or _reference/ANSI.md
 
   bpp::functions::check_params(argc, argv);
+  
   //The code ahead will only run if the user didn't specify any parameters.
   bpp::start(-1);
   return 0;
