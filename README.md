@@ -11,5 +11,5 @@ A *somewhat experimental* C++ application that can do (well, is *supposed* to do
 
 Apple Macintosh/Linux compatibility is planned but not guaranteed (for now). Make a PR please!
 
-## Why did you make this project?
-This application is meant to replace all the overpriced proprietary software out there that doesn't give you any freedom. I believe that computer software was meant to be free and open, and some desperate people from 1969 ([yes, literally](https://en.wikipedia.org/wiki/Proprietary_software#Origin)) decided to unnecessarily close monetize it. I know we all have to make a buck or two, but I really don't think software is the way to do that.
+## Why did you create this project?
+This application is meant to replace all the overpriced proprietary software out there that doesn't give you any freedom. I believe that computer software was meant to be free and open, and some desperate people from 1969 ([yes, literally](https://en.wikipedia.org/wiki/Proprietary_software#Origin)) decided to unnecessarily close and monetize it. I know we all have to make a buck or two, but I really don't think software is the way to do that.
