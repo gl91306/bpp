@@ -237,6 +237,7 @@ void bpp::functions::check_params(int pargc, char **pargv) {
       std::cout << "1: Failed to create GLFW window." << std::endl;
       std::cout << "2: Failed to initialize GLAD." << std::endl;
       std::cout << "3: Couldn't recognise an argument." << std::endl;
+      std::cout << "4: Exception. This should never occur if you are not developing this application." << std::endl;
       std::cout << std::endl << "If you get any other kind of error, please try reinstalling Blender++. If none of these options work, you can reach out to me at HackerDaGreat57@gmail.com." << std::endl << std::endl;
       bpp::quit(0);
     }
@@ -244,7 +245,7 @@ void bpp::functions::check_params(int pargc, char **pargv) {
     if (variables_map.count("errorcode")) {
       switch (errorcode) {
         case 0:
-          std::cout << "Error 0: Success. (By the way, this is the reason why early versions of Windows used to say \"Task failed successfully.\" until someone realized that meant to opposite of what it was supposed to mean.)" << std::endl;
+          std::cout << "Error 0: Success. Error 0 in any program always means success." << std::endl;
           bpp::quit(0);
         case 1:
           std::cout << "Error 1: Failed to create GLFW window. This means that your graphics card (aka GPU) doesn't support OpenGL 4.6. Try rerunning Blender++ with --renderer-cpu." << std::endl;
@@ -255,9 +256,12 @@ void bpp::functions::check_params(int pargc, char **pargv) {
         case 3:
           std::cout << "Error 3: Invalid arguments. This means that one of the application's command-line settings (the things that are seperated by spaces and begin with --) are incorrect and probably have a spelling error. Check your arguments carefully and make sure that not a single letter is off. Remember, the command-line doesn't have autocorrect!" << std::endl;
           bpp::quit(0);
+        case 4:
+          std::cout << "Error 4: Exception. This should never occur if you are not developing this application, however you can file a bug report at https://github.com/hackerdagreat57/bpp/issues if you are an end-user." << std::endl;
+          bpp::quit(0);
 
         default:
-          std::cout << "Invalid error code. Try again with the right number this time" << std::endl;
+          std::cout << "Invalid error code. Try again with the right number this time." << std::endl;
           bpp::quit(0);
       }
     }
