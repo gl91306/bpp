@@ -14,7 +14,7 @@
     <MessageCancel Show="True">Are you sure you want to cancel the installation?</MessageCancel>
     <MessageFinish Show="True">Successfully installed! Make sure to restart your computer to ensure that Blender++ works properly.</MessageFinish>
     <TitleText>Blender++ Installer</TitleText>
-    <ExtractPathText>Please select installation path:</ExtractPathText>
+    <ExtractPathText>Please select the installation path:</ExtractPathText>
     <ExtractCancelText>Cancel</ExtractCancelText>
     <ExtractDialogText>Please wait while Blender++ is installing...</ExtractDialogText>
     <ExtractTitleText>Installing...</ExtractTitleText>

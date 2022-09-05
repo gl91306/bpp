@@ -196,7 +196,7 @@ void bpp::functions::check_params(int pargc, char **pargv) {
   signed short int renderer;
 
   try {
-    boost::program_options::options_description options_description("Blender++ v0.0.1.0 Help");
+    boost::program_options::options_description options_description("Blender++ v0.0.1.0 Help", 100);
     options_description.add_options()
       ("help", "Print help message (the thing you're reading right now)")
       ("errorhelp", "Print basic information about all error codes")
@@ -223,79 +223,6 @@ void bpp::functions::check_params(int pargc, char **pargv) {
 
     if (variables_map.count("renderer-cpu")) {
       bpp:start(0);
-      bpp::quit(0);
-    }
-
-    if (variables_map.count("renderer-gdi")) {
-      #ifdef _WIN32
-      bpp::start(1);
-      #else
-      std::cout << "The GDI renderer is for Windows devices only, sorry." << std::endl;
-      #endif
-      bpp::quit(0);
-    }
-
-    if (variables_map.count("renderer-gdiplus")) {
-      #ifdef _WIN32
-      bpp::start(2);
-      #else
-      std::cout << "The GDI+ renderer is for Windows devices only, sorry." << std::endl;
-      #endif
-      bpp::quit(0);
-    }
-
-    if (variables_map.count("renderer-gl")) {
-      bpp::start(3);
-      bpp::quit(0);
-    }
-
-    if (variables_map.count("renderer-vulkan")) {
-      bpp::start(4);
-      bpp::quit(0);
-    }
-
-    if (variables_map.count("renderer-metal")) {
-      #ifdef __APPLE__
-      bpp::start(5);
-      #else
-      std::cout << "The Metal renderer is for Apple devices only, sorry." << std::endl;
-      #endif
-      bpp::quit(0);
-    }
-
-    if (variables_map.count("renderer-d3d9")) {
-      #ifdef _WIN32
-      bpp::start(6);
-      #else
-      std::cout << "The Direct3D 9 renderer is for Windows devices only, sorry." << std::endl;
-      #endif
-      bpp::quit(0);
-    }
-
-    if (variables_map.count("renderer-d3d10")) {
-      #ifdef _WIN32
-      bpp::start(7);
-      #else
-      std::cout << "The Direct3D 10 renderer is for Windows devices only, sorry." << std::endl;
-      #endif
-      bpp::quit(0);
-    }
-
-    if (variables_map.count("renderer-d3d11")) {
-      #ifdef _WIN32
-      bpp::start(8);
-      #else
-      std::cout << "The Direct3D 11 renderer is for Windows devices only, sorry." << std::endl;
-      #endif
-      bpp::quit(0);
-    }
-
-    if (variables_map.count("renderer-d3d12")) {
-      #ifdef _WIN32
-      bpp::start(9);
-      #else
-      std::cout << "The Direct3D 12 renderer is for Windows devices only, sorry." << std::endl;
-      #endif
       bpp::quit(0);
     }
 

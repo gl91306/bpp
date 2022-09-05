@@ -41,12 +41,12 @@
 				{
 					"line": 63,
 					"column": 0,
-					"label": "[int] Main function"
+					"label": "Main (entry point)"
 				},
 				{
 					"line": 81,
 					"column": 0,
-					"label": "[void] Start"
+					"label": "Start"
 				},
 				{
 					"line": 83,
@@ -126,12 +126,12 @@
 				{
 					"line": 141,
 					"column": 0,
-					"label": "[void] Color printing tests"
+					"label": "Color printing tests"
 				},
 				{
 					"line": 158,
 					"column": 0,
-					"label": "[void] Quit"
+					"label": "Quit"
 				},
 				{
 					"line": 160,
