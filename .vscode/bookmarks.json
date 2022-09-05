@@ -42,6 +42,86 @@
 					"line": 63,
 					"column": 0,
 					"label": "[int] Main function"
+				},
+				{
+					"line": 81,
+					"column": 0,
+					"label": "[void] Start"
+				},
+				{
+					"line": 83,
+					"column": 4,
+					"label": "Start: no arguments"
+				},
+				{
+					"line": 97,
+					"column": 4,
+					"label": "Start: CPU"
+				},
+				{
+					"line": 100,
+					"column": 4,
+					"label": "Start: console"
+				},
+				{
+					"line": 103,
+					"column": 4,
+					"label": "Start: wxWidgets"
+				},
+				{
+					"line": 106,
+					"column": 4,
+					"label": "Start: Qt"
+				},
+				{
+					"line": 109,
+					"column": 4,
+					"label": "Start: win32"
+				},
+				{
+					"line": 112,
+					"column": 4,
+					"label": "Start: GDI"
+				},
+				{
+					"line": 115,
+					"column": 4,
+					"label": "Start: GDI+"
+				},
+				{
+					"line": 118,
+					"column": 4,
+					"label": "Start: OpenGL"
+				},
+				{
+					"line": 121,
+					"column": 4,
+					"label": "Start: Vulkan"
+				},
+				{
+					"line": 124,
+					"column": 4,
+					"label": "Start: Metal"
+				},
+				{
+					"line": 127,
+					"column": 4,
+					"label": "Start: Direct3D 9"
+				},
+				{
+					"line": 130,
+					"column": 4,
+					"label": "Start: Direct3D 10"
+				},
+				{
+					"line": 133,
+					"column": 4,
+					"label": "Start: Direct3D 11"
+				},
+				{
+					"line": 136,
+					"column": 4,
+					"label": "Start: Direct3D 12"
 				}
 			]
 		}

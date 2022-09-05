@@ -73,7 +73,7 @@ int main(int argc, char *argv[]) {
   #endif //See https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797 or _reference/ANSI.md
 
   bpp::functions::check_params(argc, argv);
-  
+
   //The code ahead will only run if the user didn't specify any parameters.
   bpp::start(-1);
   return 0;
@@ -81,7 +81,7 @@ int main(int argc, char *argv[]) {
 
 void bpp::start(signed short int renderer) {
   switch (renderer) {
-    case -1:
+    case -1: //No arguments
       initscr();
 
       #ifdef _WIN32
@@ -95,86 +95,47 @@ void bpp::start(signed short int renderer) {
       endwin();
       break;
 
-    case 0:
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] \x1b[38;2;255;174;201mCPU renderer is still under construction. Sorry!" << std::endl;
-      bpp::quit(0);
+    case 0: //CPU
       break;
     
-    case 1:
-      glfwInit(); //GLFW: Initialize and configure
-      glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-      glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-      glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
-      #ifdef __APPLE__
-      glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-      #endif
-
-      GLFWwindow *start_window;
-      start_window = glfwCreateWindow(800, 600, "Blender++", NULL, NULL); //GLFW window creation
-      if (start_window == NULL) {
-        glfwTerminate();
-        bpp::quit(1);
-      }
-    
-      glfwMakeContextCurrent(start_window);
-      glfwSetFramebufferSizeCallback(start_window, bpp::functions::gl::framebuffer_size_callback);
-
-      if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) { //GLAD: Load all OpenGL function pointers
-        bpp::quit(2);
-      }
-
-      //Print information about detected hardware
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Using OpenGL version " << std::string((char*)glGetString(GL_VERSION)) << std::endl;
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Detected GPU vendor " << std::string((char*)glGetString(GL_VENDOR)) << std::endl;
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Rendering on GPU " << std::string((char*)glGetString(GL_RENDERER)) << std::endl;
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Found GLSL version " << std::string((char*)glGetString(GL_SHADING_LANGUAGE_VERSION)) << std::endl;
-
-
-      //Render loop
-      while (!glfwWindowShouldClose(start_window)) {
-        bpp::functions::gl::process_input(start_window); //Process input
-
-        //Render
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
-
-        glfwSwapBuffers(start_window); //Swap buffers
-        glfwPollEvents(); //Poll I/O events (keys pressed/released, mouse moved etc.)
-      }
-
-      //Terminate.
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Terminating GLFW." << std::endl;
-      glfwTerminate();
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] GLFW has been gracefully terminated. Exiting..." << std::endl;
-      bpp::quit(0);
+    case 1: //Console
       break;
     
-    case 2:
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Vulkan renderer still under construction! Sorry :(" << std::endl;
+    case 2: //wxWidgets
       break;
 
-    case 3:
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Metal renderer still under construction! Sorry :(" << std::endl;
+    case 3: //Qt
       break;
     
-    case 4:
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Direct3D 9 renderer still under construction! Sorry :(" << std::endl;
+    case 4: //win32
       break;
 
-    case 5:
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Direct3D 10 renderer still under construction! Sorry :(" << std::endl;
+    case 5: //GDI
       break;
 
-    case 6:
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Direct3D 11 renderer still under construction! Sorry :(" << std::endl;
+    case 6: //GDI+
       break;
 
-    case 7:
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Direct3D 12 renderer still under construction! Sorry :(" << std::endl;
+    case 7: //OpenGL
       break;
     
-    case 8:
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] TUI renderer still under construction! Sorry :(" << std::endl;
+    case 8: //Vulkan
+      break;
+
+    case 9: //Metal
+      break;
+
+    case 10: //Direct3D 9
+      break;
+
+    case 11: //Direct3D 10
+      break;
+
+    case 12: //Direct3D 11
+      break;
+
+    case 13: //Direct3D 12
+      break;
   }
 }
 
@@ -239,17 +200,21 @@ void bpp::functions::check_params(int pargc, char **pargv) {
     options_description.add_options()
       ("help", "Print help message (the thing you're reading right now)")
       ("errorhelp", "Print basic information about all error codes")
-      ("errorcode", boost::program_options::value(&errorcode) , "Displays a longer description for a specific error code with possible solutions. Replace 'arg' with your error code")
-      ("renderer-cpu", "Use CPU renderer")
-      ("renderer-gdi", "Use GDI renderer (Windows only)")
-      ("renderer-gdiplus", "Use GDI+ renderer (Windows only)")
-      ("renderer-gl", "Use OpenGL 4.6 renderer")
-      ("renderer-vulkan", "Use Vulkan 1.3 renderer")
-      ("renderer-metal", "Use Metal renderer (macOS only)")
-      ("renderer-d3d9", "Use Direct3D 9 renderer (Windows only)")
-      ("renderer-d3d10", "Use Direct3D 10 renderer (Windows only)")
-      ("renderer-d3d11", "Use Direct3D 11 renderer (Windows only)")
-      ("renderer-d3d12", "Use Direct3D 12 renderer (Windows only)")
+      ("errorcode", boost::program_options::value(&errorcode) , "Displays a longer description for a specific error code with possible solutions. Replace 'arg' with your error code\n") //`\n` to add a separator
+      ("renderer-cpu", "Use the CPU renderer")
+      ("renderer-console", "Use the ncursesw-based console renderer")
+      ("renderer-wx", "Use the wxWidgets renderer")
+      ("renderer-qt", "Use the Qt renderer")
+      ("renderer-win32", "Use the win32 renderer (Windows only)")
+      ("renderer-gdi", "Use the GDI renderer (Windows only)")
+      ("renderer-gdiplus", "Use the GDI+ renderer (Windows only)")
+      ("renderer-gl", "Use the OpenGL 4.6 renderer")
+      ("renderer-vulkan", "Use the Vulkan 1.3 renderer")
+      ("renderer-metal", "Use the Metal renderer (macOS only)")
+      ("renderer-d3d9", "Use the Direct3D 9 renderer (Windows only)")
+      ("renderer-d3d10", "Use the Direct3D 10 renderer (Windows only)")
+      ("renderer-d3d11", "Use the Direct3D 11 renderer (Windows only)")
+      ("renderer-d3d12", "Use the Direct3D 12 renderer (Windows only)\n")
       ("clr-test", "Test the color printing system to make sure that it works");
 
     boost::program_options::variables_map variables_map;
