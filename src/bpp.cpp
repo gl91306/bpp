@@ -171,7 +171,7 @@ void bpp::quit(short int retval) {
       std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated, returned error code 3 (bad arguments. Run Blender++ with --errorhelp-3 for possible fixes). " << std::endl;
       break;
     case 4:
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated, returned an exception." << std::endl;
+      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated, returned an exception. (Honestly, no idea how to fix this one.)" << std::endl;
       break;
     default:
       std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated with unknown error." << std::endl;
@@ -300,8 +300,6 @@ void bpp::functions::check_params(int pargc, char **pargv) {
     }
 
     if (variables_map.count("help")) {
-      //Refer to 'newhelpmsg.txt' and 'orighelpmsg.txt'
-      //Text converted with https://tomeko.net/online_tools/cpp_text_escape.php?lang=en
       std::cout << options_description << std::endl;
       bpp::quit(0);
     }
