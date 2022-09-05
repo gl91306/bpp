@@ -83,7 +83,7 @@ void bpp::start(signed short int renderer) {
   switch (renderer) {
     case -1: //No arguments
       initscr();
-
+      
       #ifdef _WIN32
       printw("Please re-run Blender++ with the --renderer-cpu argument OR use (double-click) the start.bat script.\n\nPress any key to continue...");
       #else

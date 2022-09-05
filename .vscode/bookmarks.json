@@ -74,54 +74,49 @@
 					"label": "Start: Qt"
 				},
 				{
-					"line": 109,
+					"line": 110,
 					"column": 4,
 					"label": "Start: win32"
 				},
 				{
-					"line": 112,
+					"line": 113,
 					"column": 4,
 					"label": "Start: GDI"
 				},
 				{
-					"line": 115,
+					"line": 116,
 					"column": 4,
 					"label": "Start: GDI+"
 				},
 				{
-					"line": 118,
+					"line": 119,
 					"column": 4,
 					"label": "Start: OpenGL"
 				},
 				{
-					"line": 121,
+					"line": 122,
 					"column": 4,
 					"label": "Start: Vulkan"
 				},
 				{
-					"line": 124,
+					"line": 125,
 					"column": 4,
 					"label": "Start: Metal"
 				},
 				{
-					"line": 127,
+					"line": 128,
 					"column": 4,
 					"label": "Start: Direct3D 9"
 				},
 				{
-					"line": 130,
+					"line": 131,
 					"column": 4,
 					"label": "Start: Direct3D 10"
 				},
 				{
-					"line": 133,
+					"line": 134,
 					"column": 4,
 					"label": "Start: Direct3D 11"
-				},
-				{
-					"line": 136,
-					"column": 4,
-					"label": "Start: Direct3D 12"
 				}
 			]
 		}
