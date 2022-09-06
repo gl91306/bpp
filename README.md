@@ -6,6 +6,8 @@ Apple Macintosh/Linux compatibility is planned but not guaranteed (for now). Mak
 ## Current state of the project/development status
 You can view Blender++'s [GitHub Project](https://github.com/users/HackerDaGreat57/projects/2).
 
+I would also like to point out that I will be travelling to a place without Internet connection on September 14, and I will be arriving back on October 19. There may be low activity during this time.
+
 ## Development
 ### Process
 1. Clone the repository
