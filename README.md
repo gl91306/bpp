@@ -1,5 +1,5 @@
 # Blender++
-A *somewhat experimental* C++ application that can do (well, is *supposed* to do) everything a computer is capable of. That means basically all the programs you currently have installed on your computer conveniently packed into one application. There's a long, **long** way to go until we reach that checkpoint, but I'm just doing what I can for now.
+A *somewhat experimental* C++ application. The project was created in order to let people have the freedom to do whatever they want, with no limitations or restrictions, without having to pay a single penny to anyone. But this will only happen once it gets mature enough to actually make a difference. There's a long, **long** way to go until we reach that checkpoint, but I'm just doing what I can for now.
 
 Apple Macintosh/Linux compatibility is planned but not guaranteed (for now). Make a [Pull Request](https://github.com/HackerDaGreat57/bpp/pulls) please!
 
