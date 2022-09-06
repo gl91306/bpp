@@ -174,7 +174,7 @@ void bpp::quit(short int retval) {
       std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated, returned an exception. (Honestly, no idea how to fix this one.)" << std::endl;
       break;
     default:
-      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated with unknown error." << std::endl;
+      std::cout << "{Blender++ Core} [" << __FILE__ << ":" << __LINE__ << "] Blender++ terminated with an unknown error." << std::endl;
       break;
   }
 

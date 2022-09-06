@@ -11,8 +11,6 @@ LIBSDIR = -L"%BPP_COMPILER%/mingw64/x86_64-w64-mingw32/lib" -pg -g3
 CINCS = -I"%BPP_COMPILER%/mingw64/include" -I"%BPP_COMPILER%\mingw64\include\c++\12.1.0" -I"%BPP_ROOT%/src/include"
 CXXINCS = -I"%BPP_COMPILER%/mingw64/include" -I"%BPP_COMPILER%\mingw64\include\c++\12.1.0" -I"%BPP_ROOT%/src/include"
 BIN = bin/bpp.exe
-CXXFLAGS = -w -Wall -Wextra -pedantic -fpermissive -pg -g3 -Ofast -flto -m64 -mavx2 -static-libstdc++ -static-libgcc
-CFLAGS = -w -Wall -Wextra -pedantic -fpermissive -pg -g3 -Ofast -flto -m64 -mavx2 -static-libstdc++ -static-libgcc
 RM = rm.exe -f
 
 .PHONY: all all-before all-after clean clean-custom
@@ -26,10 +24,10 @@ $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBSDIR) $(LDLIBS)
 
 obj/bpp.o: src/bpp.cpp
-	$(CPP) -c src/bpp.cpp -o obj/bpp.o $(CXXINCS) $(CXXFLAGS) $(LDLIBS)
+	$(CPP) -c src/bpp.cpp -o obj/bpp.o $(CXXINCS) $(FLAGS) $(LDLIBS)
 
 obj/glad.o: src/glad.c
-	$(CC) -c src/glad.c -o obj/glad.o $(CINCS) $(CFLAGS) $(LDLIBS)
+	$(CC) -c src/glad.c -o obj/glad.o $(CINCS) $(FLAGS) $(LDLIBS)
 
 obj/bpp.res: rsrc/bpp.rc
 	$(WINDRES) -i rsrc/bpp.rc --input-format=rc -o obj/bpp.res -O coff
