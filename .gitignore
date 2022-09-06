@@ -1,8 +1,6 @@
 obj/bpp.o
 obj/bpp.res
 obj/glad.o
-obj/functions/framebuffer_size_callback.o
-obj/functions/process_input.o
 bin/bpp.exe
 bin/glfw3.dll
 bin/gmon.out
@@ -113,5 +111,8 @@ bin/tk86.dll
 bin/zlib1.dll
 bin/libgettextlib-0-21.dll
 gmon.out
-src/bpp.exe
-ascii_color_codes.png
+bin/bpp.exe
+bin/gmon.out
+obj/bpp.o
+obj/bpp.res
+obj/glad.o

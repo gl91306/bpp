@@ -11,7 +11,7 @@ You can view Blender++'s [GitHub Project](https://github.com/users/HackerDaGreat
 1. Clone the repository
 2. Write code (lol)
 3. Compile & test **thoroughly** to make sure your stuff works
-4. Add binaries to `.gitignore`, if there are new binaries that aren't already ignored
+4. Add binaries to [`.gitignore`](https://github.com/HackerDaGreat57/bpp/blob/main/.gitignore), if there are new binaries that aren't already ignored
 5. Make a [Pull Request](https://github.com/HackerDaGreat57/bpp/pulls). Only trusted Collaborators will have push access to the repository, and everyone else always has Pull Request permissions.
 
 ### Map
