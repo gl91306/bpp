@@ -12,10 +12,12 @@ You can view Blender++'s [GitHub Project](https://github.com/users/HackerDaGreat
 2. Write code (lol)
 3. Compile & test **thoroughly** to make sure your stuff works
 4. Add binaries to `.gitignore`, if there are new binaries that aren't already ignored
-5. **DO NOT COMMIT TO THE REPOSITORY!!!** Make a [Pull Request](https://github.com/HackerDaGreat57/bpp/pulls) instead, please.
+5. Make a [Pull Request](https://github.com/HackerDaGreat57/bpp/pulls). Only trusted Collaborators will have push access to the repository, and everyone else always has Pull Request permissions.
 
 ### Map
-{Todo}
+I use [Visual Studio Code](https://github.com/microsoft/vscode) to edit the source code of the program, mainly because VS Code is the only editor apart from the real Visual Studio that has built-in IntelliSense. There is an [extention](https://github.com/wk-j/vscode-save-and-run) I have installed in VS Code that runs a Task every time my source code file is saved. That Task runs a Windows Batch File that is responsible for setting up the build and calling `mingw32-make`.
+
+Since all the code of the program is in one file, I used a [bookmarks extention](https://github.com/alefragnani/vscode-bookmarks) as well. It is configured to store bookmarks in [`.vscode/bookmarks.json`](https://github.com/HackerDaGreat57/bpp/blob/main/.vscode/bookmarks.json).
 
 ## Why did you create this project?
 This application is meant to replace all the overpriced proprietary software out there that doesn't give you any freedom. I believe that computer software was meant to be free and open, and some desperate people from 1969 ([yes, literally](https://en.wikipedia.org/wiki/Proprietary_software#Origin)) decided to unnecessarily close and monetize it. I know we all have to make a buck or two, but I really don't think software is the way to do that.
