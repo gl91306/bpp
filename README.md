@@ -1,17 +1,21 @@
 # Blender++
 A *somewhat experimental* C++ application that can do (well, is *supposed* to do) everything a computer is capable of. That means basically all the programs you currently have installed on your computer conveniently packed into one application. There's a long, **long** way to go until we reach that checkpoint, but I'm just doing what I can for now.
 
-Apple Macintosh/Linux compatibility is planned but not guaranteed (for now). Make a PR please!
+Apple Macintosh/Linux compatibility is planned but not guaranteed (for now). Make a [Pull Request](https://github.com/HackerDaGreat57/bpp/pulls) please!
 
 ## Current state of the project/development status
 You can view Blender++'s [GitHub Project](https://github.com/users/HackerDaGreat57/projects/2).
 
-## Development map
+## Development
+### Process
 1. Clone the repository
 2. Write code (lol)
 3. Compile & test **thoroughly** to make sure your stuff works
-4. Add binaries to `.gitignore`, if applicable (if there are new binaries that aren't already ignored)
-{todo}
+4. Add binaries to `.gitignore`, if there are new binaries that aren't already ignored
+5. **DO NOT COMMIT TO THE REPOSITORY!!!** Make a [Pull Request](https://github.com/HackerDaGreat57/bpp/pulls) instead, please.
+
+### Map
+{Todo}
 
 ## Why did you create this project?
 This application is meant to replace all the overpriced proprietary software out there that doesn't give you any freedom. I believe that computer software was meant to be free and open, and some desperate people from 1969 ([yes, literally](https://en.wikipedia.org/wiki/Proprietary_software#Origin)) decided to unnecessarily close and monetize it. I know we all have to make a buck or two, but I really don't think software is the way to do that.
