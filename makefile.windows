@@ -30,8 +30,58 @@ PENTIUM4 = -march=pentium4
 PENTIUM4M = -march=pentium4m
 PRESCOTT = -march=prescott
 NOCONA = -march=nocona
+CORE2 = -march=core2
+NEHALEM = -march=nehalem
+WESTMERE = -march=westmere
+SANDYBRIDGE = -march=sandybridge
+IVYBRIDGE = -march=ivybridge
+HASWELL = -march=haswell
+BROADWELL = -march=broadwell
+SKYLAKE = -march=skylake
+BONNELL = -march=bonnell
+SILVERMONT = -march=silvermont
+GOLDMONT = -march=goldmont
+GOLDMONT_PLUS = -march=goldmont-plus
+TREMONT = -march=tremont
+KNL = -march=knl
+KNM = -march=knm
+SKYLAKE_AVX512 = -march=skylake-avx512
+CANNONLAKE = -march=cannonlake
+ICELAKE_CLIENT = -march=icelake-client
+ICELAKE_SERVER = -march=icelake-server
+CASCADELAKE = -march=cascadelake
+COOPERLAKE = -march=cooperlake
+TIGERLAKE = -march=tigerlake
+SAPPHIRERAPIDS = -march=sapphirerapids
+ALDERLAKE = -march=alderlake
+ROCKETLAKE = -march=rocketlake
+K6 = -march=k6
+K6_2 = -march=k6-2
+K6_3 = -march=k6-3
+ATHLON = -march=athlon
+ATHLON_TBIRD = -march=athlon-tbird
+ATHLON_4 = -march=athlon-4
+ATHLON_XP = -march=athlon-xp
+ATHLON_MP = -march=athlon-mp
+K8 = -march=k8
+OPTERON = -march=opteron
+ATHLON64 = -march=athlon64
+ATHLON_FX = -march=athlon-fx
+K8_SSE3 = -march=k8-sse3
+OPTERON_SSE3 = -march=opteron-sse3
+ATHLON64_SSE3 = -march=athlon64-sse3
+BARCELONA = -march=barcelona
+BDVER1 = -march=bdver1
+BDVER2 = -march=bdver2
+BDVER3 = -march=bdver3
+BDVER4 = -march=bdver4
+ZNVER1 = -march=znver1
+ZNVER2 = -march=znver2
+ZNVER3 = -march=znver3
+BTVER1 = -march=btver1
+BTVER2 = -march=btver2
 
-.PHONY: all all-before all-after clean clean-custom x86_64 x86_64_v2 x86_64_v3 x86_64_v4 pentium lakemont pentium_mmx pentiumpro pentium2 pentium3 pentium3m pentium_m pentium4 pentium4m prescott nocona core2 nehalem westmere sandybridge ivybridge haswell broadwell skylake bonnell silvermont goldmont goldmont_plus tremont knl knm skylake_avx512 cannonlake icelake_client icelake_server cascadelake cooperlake tigerlake sapphirerapids alderlake rocketlake k6 k6_2 k6_3 athlon athlon_tbird athlon_4 athlon_xp athlon_mp k8 opteron athlon64 athlon_fx k8_sse3 operon_sse3 athlon64_sse3 barcelona bdver1 bdver2 bdver3 bdver4 znver1 znver2 znver3 btver1 btver2
+.PHONY: all all-before all-after clean clean-custom x86_64 x86_64_v2 x86_64_v3 x86_64_v4 pentium lakemont pentium_mmx pentiumpro pentium2 pentium3 pentium3m pentium_m pentium4 pentium4m prescott nocona core2 nehalem westmere sandybridge ivybridge haswell broadwell skylake bonnell silvermont goldmont goldmont_plus tremont knl knm skylake_avx512 cannonlake icelake_client icelake_server cascadelake cooperlake tigerlake sapphirerapids alderlake rocketlake k6 k6_2 k6_3 athlon athlon_tbird athlon_4 athlon_xp athlon_mp k8 opteron athlon64 athlon_fx k8_sse3 opteron_sse3 athlon64_sse3 barcelona bdver1 bdver2 bdver3 bdver4 znver1 znver2 znver3 btver1 btver2
 
 all: all-before all-after
 
