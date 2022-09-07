@@ -74,6 +74,12 @@
         "cmd": "%BPP_ROOT%/scripts/build.windows.bat",
         "useShortcut": false,
         "silent": true
+      },
+      {
+        "match": ".c",
+        "cmd": "%BPP_ROOT%/scripts/build.windows.bat",
+        "useShortcut": false,
+        "silent": true
       }
     ]
   },
