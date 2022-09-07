@@ -40,8 +40,3 @@ powershell -Command "(gc "%BPP_ROOT%/rsrc/bpp.rc") -replace '%old%', '%content%'
 
 ::Ok, the build has been set up. Let's actually compile the stuff now.
 %BPP_COMPILER%/mingw64/bin/mingw32-make -f makefile.windows -j%b% x86_64
-
-::Commit to the repository
-git add .
-git commit -m "New build: v0.0.0.%content%"
-git push

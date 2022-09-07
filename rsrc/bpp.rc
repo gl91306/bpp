@@ -3,28 +3,28 @@
 #include <windows.h> //Include for version info constants
 
 1 VERSIONINFO
-FILEVERSION 0,0,0,57
-PRODUCTVERSION 0,0,0,57
+FILEVERSION 0,0,0,58
+PRODUCTVERSION 0,0,0,58
 FILETYPE VFT_APP
 {
   BLOCK "StringFileInfo"
   {
     BLOCK "040904E4"
     {
-      VALUE "CompanyName", "HackerDaGreat57 Software"
-      VALUE "FileVersion", "0.0.0.57"
+      VALUE "CompanyName", "HackerDaGreat58 Software"
+      VALUE "FileVersion", "0.0.0.58"
       VALUE "FileDescription", "Blender++ | Windows x64"
       VALUE "InternalName", "bpp.exe"
-      VALUE "LegalCopyright", "(c) HackerDaGreat57 Software 2022. All rights reserved."
+      VALUE "LegalCopyright", "(c) HackerDaGreat58 Software 2022. All rights reserved."
       VALUE "LegalTrademarks", "(Not trademarked)"
       VALUE "OriginalFilename", "bpp.exe"
       VALUE "ProductName", "Blender++"
-      VALUE "ProductVersion", "0.0.0.57"
+      VALUE "ProductVersion", "0.0.0.58"
     }
   }
   
   BLOCK "VarFileInfo"
   {
-    VALUE "Translation", 0x0409, 1257
+    VALUE "Translation", 0x0409, 1258
   }
 }
