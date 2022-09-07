@@ -43,4 +43,4 @@ powershell -Command "(gc "%BPP_ROOT%/src/bpp.cpp") -replace 'v0.0.0.%old%', 'v0.
 ::Commit to the repository
 git add .
 git commit -m "New build: v0.0.0.%content%"
-gi
+git push
