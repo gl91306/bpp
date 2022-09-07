@@ -86,7 +86,11 @@ BTVER2 = btver2
 all: all-before $(BIN) all-after
 
 clean: clean-custom
+	@echo Cleaning...
 	${RM} $(OBJ) $(BIN)
+
+x86_64:
+	@echo Beginning x86_64 build.
 
 $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBSDIR) $(LDLIBS)
