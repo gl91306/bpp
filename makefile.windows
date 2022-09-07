@@ -12,6 +12,9 @@ BIN = bin/bpp.exe
 RM = rm.exe -f
 
 X86_64 = -march=x86-64
+X86_64_RES = obj/bpp.res
+X86_64_OBJ = obj/bpp.o obj/glad.o $(X86_64_RES)
+
 X86_64_V2 = -march=x86-64-v2
 X86_64_V3 = -march=x86-64-v3
 X86_64_V4 = -march=x86-64-v4
@@ -91,4 +94,4 @@ x86_64:
 	$(CPP) -c src/bpp.cpp -o obj/bpp.o $(CXXINCS) $(FLAGS) $(X86_64) $(LDLIBS)
 	$(CC) -c src/glad.c -o obj/glad.o $(CINCS) $(FLAGS) $(X86_64) $(LDLIBS)
 	$(WINDRES) -i rsrc/bpp.rc --input-format=rc -o obj/bpp.res -O coff
-	$(CPP) $(OBJ) -o $(BIN) $(LIBSDIR) $(LDLIBS)
+	$(CPP) $(X86_64_OBJ) -o $(BIN) $(LIBSDIR) $(LDLIBS)
