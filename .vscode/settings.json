@@ -67,22 +67,6 @@
     "typeindex": "cpp",
     "variant": "cpp"
   },
-  "saveAndRun": {
-    "commands": [
-      {
-        "match": ".cpp",
-        "cmd": "%BPP_ROOT%/scripts/build.windows.bat",
-        "useShortcut": false,
-        "silent": true
-      },
-      {
-        "match": ".c",
-        "cmd": "%BPP_ROOT%/scripts/build.windows.bat",
-        "useShortcut": false,
-        "silent": true
-      }
-    ]
-  },
   "editor.cursorStyle": "block",
   "files.autoSave": "afterDelay",
   "editor.fontFamily": "Cascadia Code, 'Courier New', monospace",
