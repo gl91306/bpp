@@ -3,9 +3,6 @@
 CPP = g++.exe -D__DEBUG__
 CC = gcc.exe -D__DEBUG__
 WINDRES = windres.exe
-X86_64_RES = obj/bpp.res
-OBJ = obj/bpp.o obj/glad.o $(X86_64_RES)
-LINKOBJ = obj/bpp.o obj/glad.o $(X86_64_RES)
 LDLIBS = -lglfw3 -lopengl32 -lglu32 -lgdi32 -luser32 -lkernel32 -lncursesw -lboost_atomic-mt -lboost_chrono-mt -lboost_container-mt -lboost_context-mt -lboost_contract-mt -lboost_coroutine-mt -lboost_date_time-mt -lboost_exception-mt -lboost_fiber-mt -lboost_filesystem-mt -lboost_graph-mt -lboost_iostreams-mt -lboost_json-mt -lboost_locale-mt -lboost_log-mt -lboost_log_setup-mt -lboost_math_c99-mt -lboost_math_c99f-mt -lboost_math_c99l-mt -lboost_math_tr1-mt -lboost_math_tr1f-mt -lboost_math_tr1l-mt -lboost_nowide-mt -lboost_numpy310-mt -lboost_prg_exec_monitor-mt -lboost_program_options-mt -lboost_python310-mt -lboost_random-mt -lboost_regex-mt -lboost_serialization-mt -lboost_stacktrace_noop-mt -lboost_stacktrace_windbg-mt -lboost_stacktrace_windbg_cached-mt -lboost_system-mt -lboost_test_exec_monitor-mt -lboost_thread-mt -lboost_timer-mt -lboost_type_erasure-mt -lboost_unit_test_framework-mt -lboost_wave-mt -lboost_wserialization-mt
 LIBSDIR = -L"%BPP_COMPILER%/mingw64/x86_64-w64-mingw32/lib" -pg -g3
 CINCS = -I"%BPP_COMPILER%/mingw64/include" -I"%BPP_COMPILER%\mingw64\include\c++\12.1.0" -I"%BPP_ROOT%/src/include"
@@ -14,72 +11,72 @@ FLAGS = -w -Wall -Wextra -pedantic -fpermissive -pg -g3 -Ofast -flto -m64
 BIN = bin/bpp.exe
 RM = rm.exe -f
 
-X86_64 = x86-64
-X86_64_V2 = x86-64-v2
-X86_64_V3 = x86-64-v3
-X86_64_V4 = x86-64-v4
-PENTIUM = pentium
-LAKEMONT = lakemont
-PENTIUM_MMX = pentium-mmx
-PENTIUMPRO = pentiumpro
-PENTIUM2 = pentium2
-PENTIUM3 = pentium3
-PENTIUM3M = pentium3m
-PENTIUM_M = pentium-m
-PENTIUM4 = pentium4
-PENTIUM4M = pentium4m
-PRESCOTT = prescott
-NOCONA = nocona
-CORE2 = core2
-NEHALEM = nehalem
-WESTMERE = westmere
-SANDYBRIDGE = sandybridge
-IVYBRIDGE = ivybridge
-HASWELL = haswell
-BROADWELL = broadwell
-SKYLAKE = skylake
-BONNELL = bonnell
-SILVERMONT = silvermont
-GOLDMONT = goldmont
-GOLDMONT_PLUS = goldmont-plus
-TREMONT = tremont
-KNL = knl
-KNM = knm
-SKYLAKE_AVX512 = skylake-avx512
-CANNONLAKE = cannonlake
-ICELAKE_CLIENT = icelake-client
-ICELAKE_SERVER = icelake-server
-CASCADELAKE = cascadelake
-COOPERLAKE = cooperlake
-TIGERLAKE = tigerlake
-SAPPHIRERAPIDS = sapphirerapids
-ALDERLAKE = alderlake
-ROCKETLAKE = rocketlake
-K6 = k6
-K6_2 = k6-2
-K6_3 = k6-3
-ATHLON = athlon
-ATHLON_TBIRD = athlon-tbird
-ATHLON_4 = athlon-4
-ATHLON_XP = athlon-xp
-ATHLON_MP = athlon-mp
-K8 = k8
-OPTERON = opteron
-ATHLON64 = athlon64
-ATHLON_FX = athlon-fx
-K8_SSE3 = k8-sse3
-OPTERON_SSE3 = opteron-sse3
-ATHLON64_SSE3 = athlon64-sse3
-BARCELONA = barcelona
-BDVER1 = bdver1
-BDVER2 = bdver2
-BDVER3 = bdver3
-BDVER4 = bdver4
-ZNVER1 = znver1
-ZNVER2 = znver2
-ZNVER3 = znver3
-BTVER1 = btver1
-BTVER2 = btver2
+X86_64 = -march=x86-64
+X86_64_V2 = -march=x86-64-v2
+X86_64_V3 = -march=x86-64-v3
+X86_64_V4 = -march=x86-64-v4
+PENTIUM = -march=pentium
+LAKEMONT = -march=lakemont
+PENTIUM_MMX = -march=pentium-mmx
+PENTIUMPRO = -march=pentiumpro
+PENTIUM2 = -march=pentium2
+PENTIUM3 = -march=pentium3
+PENTIUM3M = -march=pentium3m
+PENTIUM_M = -march=pentium-m
+PENTIUM4 = -march=pentium4
+PENTIUM4M = -march=pentium4m
+PRESCOTT = -march=prescott
+NOCONA = -march=nocona
+CORE2 = -march=core2
+NEHALEM = -march=nehalem
+WESTMERE = -march=westmere
+SANDYBRIDGE = -march=sandybridge
+IVYBRIDGE = -march=ivybridge
+HASWELL = -march=haswell
+BROADWELL = -march=broadwell
+SKYLAKE = -march=skylake
+BONNELL = -march=bonnell
+SILVERMONT = -march=silvermont
+GOLDMONT = -march=goldmont
+GOLDMONT_PLUS = -march=goldmont-plus
+TREMONT = -march=tremont
+KNL = -march=knl
+KNM = -march=knm
+SKYLAKE_AVX512 = -march=skylake-avx512
+CANNONLAKE = -march=cannonlake
+ICELAKE_CLIENT = -march=icelake-client
+ICELAKE_SERVER = -march=icelake-server
+CASCADELAKE = -march=cascadelake
+COOPERLAKE = -march=cooperlake
+TIGERLAKE = -march=tigerlake
+SAPPHIRERAPIDS = -march=sapphirerapids
+ALDERLAKE = -march=alderlake
+ROCKETLAKE = -march=rocketlake
+K6 = -march=k6
+K6_2 = -march=k6-2
+K6_3 = -march=k6-3
+ATHLON = -march=athlon
+ATHLON_TBIRD = -march=athlon-tbird
+ATHLON_4 = -march=athlon-4
+ATHLON_XP = -march=athlon-xp
+ATHLON_MP = -march=athlon-mp
+K8 = -march=k8
+OPTERON = -march=opteron
+ATHLON64 = -march=athlon64
+ATHLON_FX = -march=athlon-fx
+K8_SSE3 = -march=k8-sse3
+OPTERON_SSE3 = -march=opteron-sse3
+ATHLON64_SSE3 = -march=athlon64-sse3
+BARCELONA = -march=barcelona
+BDVER1 = -march=bdver1
+BDVER2 = -march=bdver2
+BDVER3 = -march=bdver3
+BDVER4 = -march=bdver4
+ZNVER1 = -march=znver1
+ZNVER2 = -march=znver2
+ZNVER3 = -march=znver3
+BTVER1 = -march=btver1
+BTVER2 = -march=btver2
 
 .PHONY: all all-before all-after clean clean-custom x86_64 x86_64_v2 x86_64_v3 x86_64_v4 pentium lakemont pentium_mmx pentiumpro pentium2 pentium3 pentium3m pentium_m pentium4 pentium4m prescott nocona core2 nehalem westmere sandybridge ivybridge haswell broadwell skylake bonnell silvermont goldmont goldmont_plus tremont knl knm skylake_avx512 cannonlake icelake_client icelake_server cascadelake cooperlake tigerlake sapphirerapids alderlake rocketlake k6 k6_2 k6_3 athlon athlon_tbird athlon_4 athlon_xp athlon_mp k8 opteron athlon64 athlon_fx k8_sse3 opteron_sse3 athlon64_sse3 barcelona bdver1 bdver2 bdver3 bdver4 znver1 znver2 znver3 btver1 btver2
 
@@ -91,15 +88,7 @@ clean: clean-custom
 
 x86_64:
 	@echo Beginning x86_64 build.
-
-$(BIN): $(OBJ)
-	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBSDIR) $(LDLIBS)
-
-obj/bpp.o: src/bpp.cpp
-	$(CPP) -c src/bpp.cpp -o obj/bpp.o $(CXXINCS) $(FLAGS) $(LDLIBS)
-
-obj/glad.o: src/glad.c
-	$(CC) -c src/glad.c -o obj/glad.o $(CINCS) $(FLAGS) $(LDLIBS)
-
-obj/bpp.res: rsrc/bpp.rc
+	$(CPP) -c src/bpp.cpp -o obj/bpp.o $(CXXINCS) $(FLAGS) $(X86_64) $(LDLIBS)
+	$(CC) -c src/glad.c -o obj/glad.o $(CINCS) $(FLAGS) $(X86_64) $(LDLIBS)
 	$(WINDRES) -i rsrc/bpp.rc --input-format=rc -o obj/bpp.res -O coff
+	$(CPP) $(OBJ) -o $(BIN) $(LIBSDIR) $(LDLIBS)
