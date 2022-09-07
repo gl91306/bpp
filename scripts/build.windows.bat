@@ -38,7 +38,7 @@ cd /D %BPP_ROOT%
 powershell -Command "(gc "%BPP_ROOT%/src/bpp.cpp") -replace 'v0.0.0.%old%', 'v0.0.0.%content%' | Out-File -encoding ASCII "%BPP_ROOT%/src/bpp.cpp""
 
 ::Ok, the build has been set up. Let's actually compile the stuff now.
-%BPP_COMPILER%/mingw64/bin/mingw32-make -f makefile.windows -j%b% FLAGS="-w -Wall -Wextra -pedantic -fpermissive -pg -g3 -Ofast -flto -m64 -march=x86-64"
+%BPP_COMPILER%/mingw64/bin/mingw32-make -f makefile.windows -j%b%
 
 ::Commit to the repository
 git add .
