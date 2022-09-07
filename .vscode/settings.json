@@ -71,7 +71,7 @@
     "commands": [
       {
         "match": ".*",
-        "cmd": "mingw32-make -f makefile.windows -j4",
+        "cmd": "%BPP_ROOT%/scripts/build.windows.bat",
         "useShortcut": false,
         "silent": true
       }
@@ -93,4 +93,8 @@
   "bookmarks.saveBookmarksInProject": true,
   "bookmarks.useWorkaroundForFormatters": true,
   "bookmarks.keepBookmarksOnLineDelete": true,
+  "gitlens.outputLevel": "debug",
+  "gitlens.showWelcomeOnInstall": false,
+  "gitlens.codeLens.authors.command": "gitlens.toggleFileHeatmap",
+  "gitlens.statusBar.reduceFlicker": false,
 }

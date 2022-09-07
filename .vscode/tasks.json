@@ -4,7 +4,7 @@
     {
       "label": "Build Blender++ for Windows",
       "type": "shell",
-      "command": "\"shell/build.windows.bat\"",
+      "command": "\"scripts/build.windows.bat\"",
       "problemMatcher": [
         "$gcc"
       ],
