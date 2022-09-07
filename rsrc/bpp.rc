@@ -12,14 +12,14 @@ FILETYPE VFT_APP
     BLOCK "040904E4"
     {
       VALUE "CompanyName", "HackerDaGreat57 Software"
-      VALUE "FileVersion", "0.0.0.9"
+      VALUE "FileVersion", "0.0.0.22"
       VALUE "FileDescription", "Blender++ - Windows x64"
       VALUE "InternalName", "bpp.exe"
       VALUE "LegalCopyright", "(c) HackerDaGreat57 Software 2022. All rights reserved."
       VALUE "LegalTrademarks", "(Not trademarked)"
       VALUE "OriginalFilename", "bpp.exe"
       VALUE "ProductName", "Blender++"
-      VALUE "ProductVersion", "0.0.0.9"
+      VALUE "ProductVersion", "0.0.0.22"
     }
   }
   
