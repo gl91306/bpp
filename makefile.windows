@@ -14,74 +14,7 @@ FLAGS = -w -Wall -Wextra -pedantic -fpermissive -pg -g3 -Ofast -flto -m64
 BIN = bin/bpp.exe
 RM = rm.exe -f
 
-X86_64 = x86-64
-X86_64_V2 = x86-64-v2
-X86_64_V3 = x86-64-v3
-X86_64_V4 = x86-64-v4
-PENTIUM = pentium
-LAKEMONT = lakemont
-PENTIUM_MMX = pentium-mmx
-PENTIUMPRO = pentiumpro
-PENTIUM2 = pentium2
-PENTIUM3 = pentium3
-PENTIUM3M = pentium3m
-PENTIUM_M = pentium-m
-PENTIUM4 = pentium4
-PENTIUM4M = pentium4m
-PRESCOTT = prescott
-NOCONA = nocona
-CORE2 = core2
-NEHALEM = nehalem
-WESTMERE = westmere
-SANDYBRIDGE = sandybridge
-IVYBRIDGE = ivybridge
-HASWELL = haswell
-BROADWELL = broadwell
-SKYLAKE = skylake
-BONNELL = bonnell
-SILVERMONT = silvermont
-GOLDMONT = goldmont
-GOLDMONT_PLUS = goldmont-plus
-TREMONT = tremont
-KNL = knl
-KNM = knm
-SKYLAKE_AVX512 = skylake-avx512
-CANNONLAKE = cannonlake
-ICELAKE_CLIENT = icelake-client
-ICELAKE_SERVER = icelake-server
-CASCADELAKE = cascadelake
-COOPERLAKE = cooperlake
-TIGERLAKE = tigerlake
-SAPPHIRERAPIDS = sapphirerapids
-ALDERLAKE = alderlake
-ROCKETLAKE = rocketlake
-K6 = k6
-K6_2 = k6-2
-K6_3 = k6-3
-ATHLON = athlon
-ATHLON_TBIRD = athlon-tbird
-ATHLON_4 = athlon-4
-ATHLON_XP = athlon-xp
-ATHLON_MP = athlon-mp
-K8 = k8
-OPTERON = opteron
-ATHLON64 = athlon64
-ATHLON_FX = athlon-fx
-K8_SSE3 = k8-sse3
-OPTERON_SSE3 = opteron-sse3
-ATHLON64_SSE3 = athlon64-sse3
-BARCELONA = barcelona
-BDVER1 = bdver1
-BDVER2 = bdver2
-BDVER3 = bdver3
-BDVER4 = bdver4
-ZNVER1 = znver1
-ZNVER2 = znver2
-ZNVER3 = znver3
-BTVER1 = btver1
-BTVER2 = btver2
-
-.PHONY: all all-before all-after clean clean-custom x86_64 x86_64_v2 x86_64_v3 x86_64_v4 pentium lakemont pentium_mmx pentiumpro pentium2 pentium3 pentium3m pentium_m pentium4 pentium4m prescott nocona core2 nehalem westmere sandybridge ivybridge haswell broadwell skylake bonnell silvermont goldmont goldmont_plus tremont knl knm skylake_avx512 cannonlake icelake_client icelake_server cascadelake cooperlake tigerlake sapphirerapids alderlake rocketlake k6 k6_2 k6_3 athlon athlon_tbird athlon_4 athlon_xp athlon_mp k8 opteron athlon64 athlon_fx k8_sse3 opteron_sse3 athlon64_sse3 barcelona bdver1 bdver2 bdver3 bdver4 znver1 znver2 znver3 btver1 btver2
+.PHONY: all all-before all-after clean clean-custom
 
 all: all-before all-after
 
