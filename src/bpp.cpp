@@ -1,4 +1,4 @@
-//bpp.cpp: The source code for Blender++ v0.0.0.17.
+//bpp.cpp: The source code for Blender++ v0.0.0.16.
 //Make sure to install the Bookmarks extention the Visual Studio Code Marketplace. (The one with the blue icon.)
 
 //Defines
@@ -23,7 +23,7 @@
 #include <windows.h>
 #endif
 
-//The Blender++ namespace treea
+//The Blender++ namespace tree
 namespace bpp {
   namespace text_colors {
     std::string reset = "\x1b[0m";
@@ -196,7 +196,7 @@ void bpp::functions::check_params(int pargc, char **pargv) {
   signed short int renderer;
 
   try {
-    boost::program_options::options_description options_description("Blender++ v0.0.0.17 Help", 100);
+    boost::program_options::options_description options_description("Blender++ v0.0.0.16 Help", 100);
     options_description.add_options()
       ("help", "Print help message (the thing you're reading right now)")
       ("errorhelp", "Print basic information about all error codes")
