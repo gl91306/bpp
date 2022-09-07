@@ -99,7 +99,7 @@
   "bookmarks.saveBookmarksInProject": true,
   "bookmarks.useWorkaroundForFormatters": true,
   "bookmarks.keepBookmarksOnLineDelete": true,
-  "gitlens.outputLevel": "debug",
+  "gitlens.outputLevel": "errors",
   "gitlens.showWelcomeOnInstall": false,
   "gitlens.codeLens.authors.command": "gitlens.toggleFileHeatmap",
   "gitlens.statusBar.reduceFlicker": false,
