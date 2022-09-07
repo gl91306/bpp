@@ -10,10 +10,28 @@ LDLIBS = -lglfw3 -lopengl32 -lglu32 -lgdi32 -luser32 -lkernel32 -lncursesw -lboo
 LIBSDIR = -L"%BPP_COMPILER%/mingw64/x86_64-w64-mingw32/lib" -pg -g3
 CINCS = -I"%BPP_COMPILER%/mingw64/include" -I"%BPP_COMPILER%\mingw64\include\c++\12.1.0" -I"%BPP_ROOT%/src/include"
 CXXINCS = -I"%BPP_COMPILER%/mingw64/include" -I"%BPP_COMPILER%\mingw64\include\c++\12.1.0" -I"%BPP_ROOT%/src/include"
+FLAGS = -w -Wall -Wextra -pedantic -fpermissive -pg -g3 -Ofast -flto -m64
 BIN = bin/bpp.exe
 RM = rm.exe -f
 
-.PHONY: all all-before all-after clean clean-custom x86_64 pentium lakemont pentium_mmx pentiumpro pentium2 pentium3 pentium3m pentium_m pentium4 pentium4m prescott nocona core2 nehalem westmere sandybridge ivybridge haswell broadwell skylake bonnell silvermont goldmont goldmont_plus tremont knl knm skylake_avx512 cannonlake icelake_client icelake_server cascadelake cooperlake tigerlake sapphirerapids alderlake rocketlake k6 k6_2 k6_3 athlon athlon_tbird athlon_4 athlon_xp athlon_mp k8 opteron athlon64 athlon_fx k8_sse3 operon_sse3 athlon64_sse3 barcelona bdver1 bdver2 bdver3 bdver4 znver1 znver2 znver3 btver1 btver2
+X86_64 = -march=x86-64
+X86_64_V2 = -march=x86-64-v2
+X86_64_V3 = -march=x86-64-v3
+X86_64_V4 = -march=x86-64-v4
+PENTIUM = -march=pentium
+LAKEMONT = -march=lakemont
+PENTIUM_MMX = -march-pentium-mmx
+PENTIUMPRO = -march-pentiumpro
+PENTIUM2 = -march=pentium2
+PENTIUM3 = -march=pentium3
+PENTIUM3M = -march=pentium3m
+PENTIUM_M = -march=pentium-m
+PENTIUM4 = -march=pentium4
+PENTIUM4M = -march=pentium4m
+PRESCOTT = -march=prescott
+NOCONA = -march=nocona
+
+.PHONY: all all-before all-after clean clean-custom x86_64 x86_64_v2 x86_64_v3 x86_64_v4 pentium lakemont pentium_mmx pentiumpro pentium2 pentium3 pentium3m pentium_m pentium4 pentium4m prescott nocona core2 nehalem westmere sandybridge ivybridge haswell broadwell skylake bonnell silvermont goldmont goldmont_plus tremont knl knm skylake_avx512 cannonlake icelake_client icelake_server cascadelake cooperlake tigerlake sapphirerapids alderlake rocketlake k6 k6_2 k6_3 athlon athlon_tbird athlon_4 athlon_xp athlon_mp k8 opteron athlon64 athlon_fx k8_sse3 operon_sse3 athlon64_sse3 barcelona bdver1 bdver2 bdver3 bdver4 znver1 znver2 znver3 btver1 btver2
 
 all: all-before all-after
 
