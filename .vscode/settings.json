@@ -70,7 +70,7 @@
   "saveAndRun": {
     "commands": [
       {
-        "match": [".*", ""],
+        "match": [".*",
         "cmd": "%BPP_ROOT%/scripts/build.windows.bat",
         "useShortcut": false,
         "silent": true
