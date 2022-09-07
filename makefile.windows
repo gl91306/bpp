@@ -13,9 +13,9 @@ CXXINCS = -I"%BPP_COMPILER%/mingw64/include" -I"%BPP_COMPILER%\mingw64\include\c
 BIN = bin/bpp.exe
 RM = rm.exe -f
 
-.PHONY: all all-before all-after clean clean-custom
+.PHONY: all all-before all-after clean clean-custom x86_64 pentium lakemont pentium_mmx pentiumpro pentium2 pentium3 pentium3m pentium_m pentium4 pentium4m prescott nocona core2 nehalem westmere sandybridge ivybridge haswell broadwell skylake bonnell silvermont goldmont goldmont_plus tremont knl knm skylake_avx512 cannonlake icelake_client icelake_server cascadelake cooperlake tigerlake sapphirerapids alderlake rocketlake k6 k6_2 k6_3 athlon athlon_tbird athlon_4 athlon_xp athlon_mp k8 opteron athlon64 athlon_fx k8_sse3 operon_sse3 athlon64_sse3 barcelona bdver1 bdver2 bdver3 bdver4 znver1 znver2 znver3 btver1 btver2
 
-all: all-before $(BIN) all-after
+all: all-before all-after
 
 clean: clean-custom
 	${RM} $(OBJ) $(BIN)
