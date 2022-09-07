@@ -16,7 +16,7 @@ RM = rm.exe -f
 
 .PHONY: all all-before all-after clean clean-custom
 
-all: all-before all-after
+all: all-before $(BIN) all-after
 
 clean: clean-custom
 	${RM} $(OBJ) $(BIN)
