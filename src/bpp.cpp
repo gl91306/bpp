@@ -1,4 +1,4 @@
-//bpp.cpp: The source code for Blender++ v0.0.0.29.
+//bpp.cpp: The source code for Blender++ v0.0.0.30.
 //Make sure to install the Bookmarks extention the Visual Studio Code Marketplace. (The one with the blue icon.)
 
 //Defines
@@ -196,7 +196,7 @@ void bpp::functions::check_params(int pargc, char **pargv) {
   signed short int renderer;
 
   try {
-    boost::program_options::options_description options_description("Blender++ v0.0.0.29 Help", 100);
+    boost::program_options::options_description options_description("Blender++ v0.0.0.30 Help", 100);
     options_description.add_options()
       ("help", "Print help message (the thing you're reading right now)")
       ("errorhelp", "Print basic information about all error codes")
