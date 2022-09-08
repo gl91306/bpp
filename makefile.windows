@@ -91,7 +91,7 @@ BTVER2 = -march=btver2
 
 .PHONY: all all-before all-after clean clean-custom x86_64 x86_64_v2 x86_64_v3 x86_64_v4 pentium lakemont pentium_mmx pentiumpro pentium2 pentium3 pentium3m pentium_m pentium4 pentium4m prescott nocona core2 nehalem westmere sandybridge ivybridge haswell broadwell skylake bonnell silvermont goldmont goldmont_plus tremont knl knm skylake_avx512 cannonlake icelake_client icelake_server cascadelake cooperlake tigerlake sapphirerapids alderlake rocketlake k6 k6_2 k6_3 athlon athlon_tbird athlon_4 athlon_xp athlon_mp k8 opteron athlon64 athlon_fx k8_sse3 opteron_sse3 athlon64_sse3 barcelona bdver1 bdver2 bdver3 bdver4 znver1 znver2 znver3 btver1 btver2
 
-all: all-before $(BIN) all-after
+all: all-before (X86_64_BIN) (X86_64_V2_BIN) (X86_64_V3_BIN) all-after
 
 clean: clean-custom
 	@echo Cleaning...
@@ -117,3 +117,4 @@ x86_64_v3:
 	$(CC) -c src/glad.c -o obj/x86_64_v3/glad.o $(CINCS) $(FLAGS) $(X86_64_V3) $(LDLIBS)
 	$(WINDRES) -i rsrc/bpp.rc --input-format=rc -o obj/x86_64_v3/bpp.res -O coff
 	$(CPP) $(X86_64_V3_OBJ) -o $(X86_64_V3_BIN) $(LIBSDIR) $(LDLIBS)
+
