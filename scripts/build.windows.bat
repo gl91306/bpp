@@ -64,6 +64,8 @@ if exist x86_64_v3 (
   mkdir x86_64_v3
 )
 
+
+
 cd %BPP_ROOT%
 
 ::Number of cores is divided by 2 for keeping the system responsive/preventing Intel Hyperthreading to confuse us
