@@ -146,12 +146,40 @@ GOLDMONT_RES = obj/goldmont/bpp.res
 GOLDMONT_OBJ = obj/goldmont/bpp.o obj/goldmont/glad.o $(GOLDMONT_RES)
 
 GOLDMONT_PLUS = -march=goldmont-plus
+GOLDMONT_PLUS_BIN = bin/goldmont_plus/bpp.exe
+GOLDMONT_PLUS_RES = obj/goldmont_plus/bpp.res
+GOLDMONT_PLUS_OBJ = obj/goldmont_plus/bpp.o obj/goldmont_plus/glad.o $(GOLDMONT_PLUS_RES)
+
 TREMONT = -march=tremont
+TREMONT_BIN = bin/tremont/bpp.exe
+TREMONT_RES = obj/tremont/bpp.res
+TREMONT_OBJ = obj/tremont/bpp.o obj/tremont/glad.o $(TREMONT_RES)
+
 KNL = -march=knl
+KNL_BIN = bin/knl/bpp.exe
+KNL_RES = obj/knl/bpp.res
+KNL_OBJ = obj/knl/bpp.o obj/knl/glad.o $(KNL_RES)
+
 KNM = -march=knm
+KNM_BIN = bin/knm/bpp.exe
+KNM_RES = obj/knm/bpp.res
+KNM_OBJ = obj/knm/bpp.o obj/knm/glad.o $(KNM_RES)
+
 SKYLAKE_AVX512 = -march=skylake-avx512
+SKYLAKE_AVX512_BIN = bin/skylake_avx512/bpp.exe
+SKYLAKE_AVX512_RES = obj/skylake_avx512/bpp.res
+SKYLAKE_AVX512_OBJ = obj/skylake_avx512/bpp.o obj/skylake_avx512/glad.o $(SKYLAKE_AVX512_RES)
+
 CANNONLAKE = -march=cannonlake
+CANNONLAKE_BIN = bin/cannonlake/bpp.exe
+CANNONLAKE_RES = obj/cannonlake/bpp.res
+CANNONLAKE_OBJ = obj/cannonlake/bpp.o obj/cannonlake/glad.o $(CANNONLAKE_RES)
+
 ICELAKE_CLIENT = -march=icelake-client
+ICELAKE_CLIENT_BIN = bin/icelake_client/bpp.exe
+ICELAKE_CLIENT_RES = obj/icelake_client/bpp.res
+ICELAKE_CLIENT_OBJ = obj/icelake_client/bpp.o obj/icelake_client/glad.o $(ICELAKE_CLIENT_RES)
+
 ICELAKE_SERVER = -march=icelake-server
 CASCADELAKE = -march=cascadelake
 COOPERLAKE = -march=cooperlake
