@@ -64,25 +64,6 @@ if exist x86_64_v3 (
   mkdir x86_64_v3
 )
 
-cd %BPP_ROOT%/obj/
-if exist zlib1.dll (
-  echo DLLs already exist inside x86_64 directory
-) else (
-  xcopy "%BPP_COMPILER%/mingw64/bin/*.dll" "%BPP_ROOT%/bin/x86_64/" /f /g /y /h
-)
-cd ../x86_64_v2
-if exist zlib1.dll (
-  echo DLLs already exist inside x86_64_v2 directory
-) else (
-  xcopy "%BPP_COMPILER%/mingw64/bin/*.dll" "%BPP_ROOT%/bin/x86_64_v2/" /f /g /y /h
-)
-cd ../x86_64_v3
-if exist zlib1.dll (
-  echo DLLs already exist inside x86_64_v3 directory
-) else (
-  xcopy "%BPP_COMPILER%/mingw64/bin/*.dll" "%BPP_ROOT%/bin/x86_64_v3/" /f /g /y /h
-)
-
 cd %BPP_ROOT%
 
 ::Number of cores is divided by 2 for keeping the system responsive/preventing Intel Hyperthreading to confuse us
@@ -104,4 +85,4 @@ powershell -Command "(gc "%BPP_ROOT%/src/bpp.cpp") -replace 'v0.0.0.%old%', 'v0.
 powershell -Command "(gc "%BPP_ROOT%/rsrc/bpp.rc") -replace '%old%', '%content%' | Out-File -encoding ASCII "%BPP_ROOT%/rsrc/bpp.rc""
 
 ::Ok, the build has been set up. Let's actually compile the stuff now.
-%BPP_COMPILER%/mingw64/bin/mingw32-make -f makefile.windows -j%b% x86_64
+%BPP_COMPILER%/mingw64/bin/mingw32-make -f makefile.windows -j%b% x86_64 x86_64_v2 x86_64_v3

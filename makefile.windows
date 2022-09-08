@@ -4,7 +4,7 @@ CPP = g++.exe -D__DEBUG__
 CC = gcc.exe -D__DEBUG__
 WINDRES = windres.exe
 LDLIBS = -lglfw3 -lopengl32 -lglu32 -lgdi32 -luser32 -lkernel32 -lncursesw -lboost_atomic-mt -lboost_chrono-mt -lboost_container-mt -lboost_context-mt -lboost_contract-mt -lboost_coroutine-mt -lboost_date_time-mt -lboost_exception-mt -lboost_fiber-mt -lboost_filesystem-mt -lboost_graph-mt -lboost_iostreams-mt -lboost_json-mt -lboost_locale-mt -lboost_log-mt -lboost_log_setup-mt -lboost_math_c99-mt -lboost_math_c99f-mt -lboost_math_c99l-mt -lboost_math_tr1-mt -lboost_math_tr1f-mt -lboost_math_tr1l-mt -lboost_nowide-mt -lboost_numpy310-mt -lboost_prg_exec_monitor-mt -lboost_program_options-mt -lboost_python310-mt -lboost_random-mt -lboost_regex-mt -lboost_serialization-mt -lboost_stacktrace_noop-mt -lboost_stacktrace_windbg-mt -lboost_stacktrace_windbg_cached-mt -lboost_system-mt -lboost_test_exec_monitor-mt -lboost_thread-mt -lboost_timer-mt -lboost_type_erasure-mt -lboost_unit_test_framework-mt -lboost_wave-mt -lboost_wserialization-mt
-LIBSDIR = -L"%BPP_COMPILER%/mingw64/x86_64-w64-mingw32/lib" -pg -g3
+LIBSDIR = -L"%BPP_COMPILER%/mingw64/lib"
 CINCS = -I"%BPP_COMPILER%/mingw64/include" -I"%BPP_COMPILER%\mingw64\include\c++\12.1.0" -I"%BPP_ROOT%/src/include"
 CXXINCS = -I"%BPP_COMPILER%/mingw64/include" -I"%BPP_COMPILER%\mingw64\include\c++\12.1.0" -I"%BPP_ROOT%/src/include"
 FLAGS = -w -Wall -Wextra -pedantic -fpermissive -pg -g3 -Ofast -flto -save-temps -m64
@@ -12,11 +12,19 @@ RM = rm.exe -f
 
 X86_64 = -march=x86-64
 X86_64_BIN = bin/x86_64/bpp.exe
-X86_64_RES = obj/bpp.res
-X86_64_OBJ = obj/bpp.o obj/glad.o $(X86_64_RES)
+X86_64_RES = obj/x86_64/bpp.res
+X86_64_OBJ = obj/x86_64/bpp.o obj/x86_64/glad.o $(X86_64_RES)
 
 X86_64_V2 = -march=x86-64-v2
+X86_64_V2_BIN = bin/x86_64_v2/bpp.exe
+X86_64_V2_RES = obj/x86_64_v2/bpp.res
+X86_64_V2_OBJ = obj/x86_64_v2/bpp.o obj/x86_64_v2/glad.o $(X86_64_V2_RES)
+
 X86_64_V3 = -march=x86-64-v3
+X86_64_V3_BIN = bin/x86_64_v3/bpp.exe
+X86_64_V3_RES = obj/x86_64_v3/bpp.res
+X86_64_V3_OBJ = obj/x86_64_v3/bpp.o obj/x86_64_v3/glad.o $(X86_64_V3_RES)
+
 X86_64_V4 = -march=x86-64-v4
 PENTIUM = -march=pentium
 LAKEMONT = -march=lakemont
@@ -87,11 +95,25 @@ all: all-before $(BIN) all-after
 
 clean: clean-custom
 	@echo Cleaning...
-	${RM} $(OBJ) $(BIN)
+	${RM} $(X86_64_OBJ) $(X86_64_V2_OBJ) $(X86_64_V3_OBJ) $(X86_64_BIN) $(X86_64_V2_BIN) $(X86_64_V3_BIN)
 
 x86_64:
 	@echo Beginning x86_64 build.
-	$(CPP) -c src/bpp.cpp -o obj/bpp.o $(CXXINCS) $(FLAGS) $(X86_64) $(LDLIBS)
-	$(CC) -c src/glad.c -o obj/glad.o $(CINCS) $(FLAGS) $(X86_64) $(LDLIBS)
-	$(WINDRES) -i rsrc/bpp.rc --input-format=rc -o obj/bpp.res -O coff
-	$(CPP) $(X86_64_OBJ) -o $(BIN) $(LIBSDIR) $(LDLIBS)
+	$(CPP) -c src/bpp.cpp -o obj/x86_64/bpp.o $(CXXINCS) $(FLAGS) $(X86_64) $(LDLIBS)
+	$(CC) -c src/glad.c -o obj/x86_64/glad.o $(CINCS) $(FLAGS) $(X86_64) $(LDLIBS)
+	$(WINDRES) -i rsrc/bpp.rc --input-format=rc -o obj/x86_64/bpp.res -O coff
+	$(CPP) $(X86_64_OBJ) -o $(X86_64_BIN) $(LIBSDIR) $(LDLIBS)
+
+x86_64_v2:
+	@echo Beginning x86_64_v2 build.
+	$(CPP) -c src/bpp.cpp -o obj/x86_64_v2/bpp.o $(CXXINCS) $(FLAGS) $(X86_64_V2) $(LDLIBS)
+	$(CC) -c src/glad.c -o obj/x86_64_v2/glad.o $(CINCS) $(FLAGS) $(X86_64_V2) $(LDLIBS)
+	$(WINDRES) -i rsrc/bpp.rc --input-format=rc -o obj/x86_64_v2/bpp.res -O coff
+	$(CPP) $(X86_64_V2_OBJ) -o $(X86_64_V2_BIN) $(LIBSDIR) $(LDLIBS)
+
+x86_64_v3:
+	@echo Beginning x86_64_v3 build.
+	$(CPP) -c src/bpp.cpp -o obj/x86_64_v3/bpp.o $(CXXINCS) $(FLAGS) $(X86_64_V3) $(LDLIBS)
+	$(CC) -c src/glad.c -o obj/x86_64_v3/glad.o $(CINCS) $(FLAGS) $(X86_64_V3) $(LDLIBS)
+	$(WINDRES) -i rsrc/bpp.rc --input-format=rc -o obj/x86_64_v3/bpp.res -O coff
+	$(CPP) $(X86_64_V3_OBJ) -o $(X86_64_V3_BIN) $(LIBSDIR) $(LDLIBS)
