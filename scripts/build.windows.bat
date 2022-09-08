@@ -64,7 +64,16 @@ if exist x86_64_v3 (
   mkdir x86_64_v3
 )
 
-
+cd %BPP_COMPILER%/mingw64/bin
+if exist libboost_atomic-mt.dll (
+  echo Libraries already installed.
+) else (
+  pacman -S mingw-w64-x86_64-toolchain --noconfirm
+  pacman -S mingw-w64-x86_64-glfw --noconfirm
+  pacman -S mingw-w64-x86_64-boost --noconfirm
+  pacman -S mingw-w64-x86_64-ncurses --noconfirm
+  pacman -Syuu
+)
 
 cd %BPP_ROOT%
 
