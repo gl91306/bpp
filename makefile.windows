@@ -26,14 +26,50 @@ X86_64_V3_RES = obj/x86_64_v3/bpp.res
 X86_64_V3_OBJ = obj/x86_64_v3/bpp.o obj/x86_64_v3/glad.o $(X86_64_V3_RES)
 
 X86_64_V4 = -march=x86-64-v4
+X86_64_V4_BIN = bin/x86_64_v4/bpp.exe
+X86_64_V4_RES = obj/x86_64_v4/bpp.res
+X86_64_V4_OBJ = obj/x86_64_v4/bpp.o obj/x86_64_v4/glad.o $(X86_64_V4_RES)
+
 PENTIUM = -march=pentium
+PENTIUM_BIN = bin/pentium/bpp.exe
+PENTIUM_RES = obj/pentium/bpp.res
+PENTIUM_OBJ = obj/pentium/bpp.o obj/pentium/glad.o $(PENTIUM_RES)
+
 LAKEMONT = -march=lakemont
+LAKEMONT_BIN = bin/lakemont/bpp.exe
+LAKEMONT_RES = obj/lakemont/bpp.res
+LAKEMONT_OBJ = obj/lakemont/bpp.o obj/lakemont/glad.o $(LAKEMONT_RES)
+
 PENTIUM_MMX = -march=pentium-mmx
+PENTIUM_MMX_BIN = bin/pentium_mmx/bpp.exe
+PENTIUM_MMX_RES = obj/pentium_mmx/bpp.res
+PENTIUM_MMX_OBJ = obj/pentium_mmx/bpp.o obj/pentium_mmx/glad.o $(PENTIUM_MMX_RES)
+
 PENTIUMPRO = -march=pentiumpro
+PENTIUMPRO_BIN = bin/pentiumpro/bpp.exe
+PENTIUMPRO_RES = obj/pentiumpro/bpp.res
+PENTIUMPRO_OBJ = obj/pentiumpro/bpp.o obj/pentiumpro/glad.o $(PENTIUMPRO_RES)
+
 PENTIUM2 = -march=pentium2
+PENTIUM2_BIN = bin/pentium2/bpp.exe
+PENTIUM2_RES = obj/pentium2/bpp.res
+PENTIUM2_OBJ = obj/pentium2/bpp.o obj/pentium2/glad.o $(PENTIUM2_RES)
+
 PENTIUM3 = -march=pentium3
+PENTIUM3_BIN = bin/pentium3/bpp.exe
+PENTIUM3_RES = obj/pentium3/bpp.res
+PENTIUM3_OBJ = obj/pentium3/bpp.o obj/pentium3/glad.o $(PENTIUM3_RES)
+
 PENTIUM3M = -march=pentium3m
+PENTIUM3M_BIN = bin/pentium3m/bpp.exe
+PENTIUM3M_RES = obj/pentium3m/bpp.res
+PENTIUM3M_OBJ = obj/pentium3m/bpp.o obj/pentium3m/glad.o $(PENTIUM3M_RES)
+
 PENTIUM_M = -march=pentium-m
+PENTIUM_M_BIN = bin/pentium_m/bpp.exe
+PENTIUM_M_RES = obj/pentium_m/bpp.res
+PENTIUM_M_OBJ = obj/pentium_m/bpp.o obj/pentium_m/glad.o $(PENTIUM_M_RES)
+
 PENTIUM4 = -march=pentium4
 PENTIUM4M = -march=pentium4m
 PRESCOTT = -march=prescott
