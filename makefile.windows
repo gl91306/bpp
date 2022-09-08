@@ -71,20 +71,80 @@ PENTIUM_M_RES = obj/pentium_m/bpp.res
 PENTIUM_M_OBJ = obj/pentium_m/bpp.o obj/pentium_m/glad.o $(PENTIUM_M_RES)
 
 PENTIUM4 = -march=pentium4
+PENTIUM4_BIN = bin/pentium4/bpp.exe
+PENTIUM4_RES = obj/pentium4/bpp.res
+PENTIUM4_OBJ = obj/pentium4/bpp.o obj/pentium4/glad.o $(PENTIUM4_RES)
+
 PENTIUM4M = -march=pentium4m
+PENTIUM4M_BIN = bin/pentium4m/bpp.exe
+PENTIUM4M_RES = obj/pentium4m/bpp.res
+PENTIUM4M_OBJ = obj/pentium4m/bpp.o obj/pentium4m/glad.o $(PENTIUM4M_RES)
+
 PRESCOTT = -march=prescott
+PRESCOTT_BIN = bin/prescott/bpp.exe
+PRESCOTT_RES = obj/prescott/bpp.res
+PRESCOTT_OBJ = obj/prescott/bpp.o obj/prescott/glad.o $(PRESCOTT_RES)
+
 NOCONA = -march=nocona
+NOCONA_BIN = bin/nocona/bpp.exe
+NOCONA_RES = obj/nocona/bpp.res
+NOCONA_OBJ = obj/nocona/bpp.o obj/nocona/glad.o $(NOCONA_RES)
+
 CORE2 = -march=core2
+CORE2_BIN = bin/core2/bpp.exe
+CORE2_RES = obj/core2/bpp.res
+CORE2_OBJ = obj/core2/bpp.o obj/core2/glad.o $(CORE2_RES)
+
 NEHALEM = -march=nehalem
+NEHALEM_BIN = bin/nehalem/bpp.exe
+NEHALEM_RES = obj/nehalem/bpp.res
+NEHALEM_OBJ = obj/nehalem/bpp.o obj/nehalem/glad.o $(NEHALEM_RES)
+
 WESTMERE = -march=westmere
+WESTMERE_BIN = bin/westmere/bpp.exe
+WESTMERE_RES = obj/westmere/bpp.res
+WESTMERE_OBJ = obj/westmere/bpp.o obj/westmere/glad.o $(WESTMERE_RES)
+
 SANDYBRIDGE = -march=sandybridge
+SANDYBRIDGE_BIN = bin/sandybridge/bpp.exe
+SANDYBRIDGE_RES = obj/sandybridge/bpp.res
+SANDYBRIDGE_OBJ = obj/sandybridge/bpp.o obj/sandybridge/glad.o $(SANDYBRDIGE_RES)
+
 IVYBRIDGE = -march=ivybridge
+IVYBRIDGE_BIN = bin/ivybridge/bpp.exe
+IVYBRIDGE_RES = obj/ivybridge/bpp.res
+IVYBRIDGE_OBJ = obj/ivybridge/bpp.o obj/ivybridge/glad.o $(IVYBRDIGE_RES)
+
 HASWELL = -march=haswell
+HASWELL_BIN = bin/haswell/bpp.exe
+HASWELL_RES = obj/haswell/bpp.res
+HASWELL_OBJ = obj/haswell/bpp.o obj/haswell/glad.o $(HASWELL_RES)
+
 BROADWELL = -march=broadwell
+BROADWELL_BIN = bin/broadwell/bpp.exe
+BROADWELL_RES = obj/broadwell/bpp.res
+BROADWELL_OBJ = obj/broadwell/bpp.o obj/broadwell/glad.o $(BROADWELL_RES)
+
 SKYLAKE = -march=skylake
+SKYLAKE_BIN = bin/skylake/bpp.exe
+SKYLAKE_RES = obj/skylake/bpp.res
+SKYLAKE_OBJ = obj/skylake/bpp.o obj/skylake/glad.o $(SKYLAKE_RES)
+
 BONNELL = -march=bonnell
+BONNELL_BIN = bin/bonnell/bpp.exe
+BONNELL_RES = obj/bonnell/bpp.res
+BONNELL_OBJ = obj/bonnell/bpp.o obj/bonnell/glad.o $(BONNELL_RES)
+
 SILVERMONT = -march=silvermont
+SILVERMONT_BIN = bin/silvermont/bpp.exe
+SILVERMONT_RES = obj/silvermont/bpp.res
+SILVERMONT_OBJ = obj/silvermont/bpp.o obj/silvermont/glad.o $(SILVERMONT_RES)
+
 GOLDMONT = -march=goldmont
+GOLDMONT_BIN = bin/goldmont/bpp.exe
+GOLDMONT_RES = obj/goldmont/bpp.res
+GOLDMONT_OBJ = obj/goldmont/bpp.o obj/goldmont/glad.o $(GOLDMONT_RES)
+
 GOLDMONT_PLUS = -march=goldmont-plus
 TREMONT = -march=tremont
 KNL = -march=knl
