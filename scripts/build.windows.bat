@@ -6,16 +6,81 @@ if exist bin (
 ) else (
   mkdir bin
 )
+cd bin
+if exist x86_64 (
+  echo x86_64 directory already exists
+) else (
+  mkdir x86_64
+)
+if exist x86_64_v2 (
+  echo x86_64_v2 directory already exists
+) else (
+  mkdir x86_64_v2
+)
+if exist x86_64_v3 (
+  echo x86_64_v3 directory already exists
+) else (
+  mkdir x86_64_v3
+)
+cd x86_64
+if exist zlib1.dll (
+  echo DLLs already exist inside x86_64 directory
+) else (
+  xcopy "%BPP_COMPILER%/mingw64/bin/*.dll" "%BPP_ROOT%/bin/x86_64/" /f /g /y /h
+)
+cd ../x86_64_v2
+if exist zlib1.dll (
+  echo DLLs already exist inside x86_64_v2 directory
+) else (
+  xcopy "%BPP_COMPILER%/mingw64/bin/*.dll" "%BPP_ROOT%/bin/x86_64_v2/" /f /g /y /h
+)
+cd ../x86_64_v3
+if exist zlib1.dll (
+  echo DLLs already exist inside x86_64_v3 directory
+) else (
+  xcopy "%BPP_COMPILER%/mingw64/bin/*.dll" "%BPP_ROOT%/bin/x86_64_v3/" /f /g /y /h
+)
+
+cd %BPP_ROOT%
 if exist obj (
   echo obj directory already exists
 ) else (
   mkdir obj
 )
-cd bin
-if exist zlib1.dll (
-  echo DLLs already exist inside bin directory
+cd obj
+if exist x86_64 (
+  echo x86_64 directory already exists
 ) else (
-  xcopy "%BPP_COMPILER%/mingw64/bin/*.dll" "%BPP_ROOT%/bin/" /f /g /y /h
+  mkdir x86_64
+)
+if exist x86_64_v2 (
+  echo x86_64_v2 directory already exists
+) else (
+  mkdir x86_64_v2
+)
+if exist x86_64_v3 (
+  echo x86_64_v3 directory already exists
+) else (
+  mkdir x86_64_v3
+)
+
+cd %BPP_ROOT%/obj/
+if exist zlib1.dll (
+  echo DLLs already exist inside x86_64 directory
+) else (
+  xcopy "%BPP_COMPILER%/mingw64/bin/*.dll" "%BPP_ROOT%/bin/x86_64/" /f /g /y /h
+)
+cd ../x86_64_v2
+if exist zlib1.dll (
+  echo DLLs already exist inside x86_64_v2 directory
+) else (
+  xcopy "%BPP_COMPILER%/mingw64/bin/*.dll" "%BPP_ROOT%/bin/x86_64_v2/" /f /g /y /h
+)
+cd ../x86_64_v3
+if exist zlib1.dll (
+  echo DLLs already exist inside x86_64_v3 directory
+) else (
+  xcopy "%BPP_COMPILER%/mingw64/bin/*.dll" "%BPP_ROOT%/bin/x86_64_v3/" /f /g /y /h
 )
 
 cd %BPP_ROOT%

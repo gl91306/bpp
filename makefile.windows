@@ -7,11 +7,11 @@ LDLIBS = -lglfw3 -lopengl32 -lglu32 -lgdi32 -luser32 -lkernel32 -lncursesw -lboo
 LIBSDIR = -L"%BPP_COMPILER%/mingw64/x86_64-w64-mingw32/lib" -pg -g3
 CINCS = -I"%BPP_COMPILER%/mingw64/include" -I"%BPP_COMPILER%\mingw64\include\c++\12.1.0" -I"%BPP_ROOT%/src/include"
 CXXINCS = -I"%BPP_COMPILER%/mingw64/include" -I"%BPP_COMPILER%\mingw64\include\c++\12.1.0" -I"%BPP_ROOT%/src/include"
-FLAGS = -w -Wall -Wextra -pedantic -fpermissive -pg -g3 -Ofast -flto -m64
-BIN = bin/bpp.exe
+FLAGS = -w -Wall -Wextra -pedantic -fpermissive -pg -g3 -Ofast -flto -save-temps -m64
 RM = rm.exe -f
 
 X86_64 = -march=x86-64
+X86_64_BIN = bin/x86_64/bpp.exe
 X86_64_RES = obj/bpp.res
 X86_64_OBJ = obj/bpp.o obj/glad.o $(X86_64_RES)
 
