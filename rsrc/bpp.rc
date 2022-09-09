@@ -9,7 +9,7 @@ FILETYPE VFT_APP
 {
   BLOCK "StringFileInfo"
   {
-    BLOCK "0401204E4"
+    BLOCK "0401264E4"
     {
       VALUE "CompanyName", "HackerDaGreat57 Software"
       VALUE "FileVersion", "0.0.0.87"

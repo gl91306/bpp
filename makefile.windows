@@ -291,15 +291,54 @@ ATHLON64_SSE3_RES = obj/athlon64_sse3/bpp.res
 ATHLON64_SSE3_OBJ = obj/athlon64_sse3/bpp.o obj/athlon64_sse3/glad.o $(ATHLON64_SSE3_RES)
 
 BARCELONA = -march=barcelona
+BARCELONA_BIN = bin/barcelona/bpp.exe
+BARCELONA_RES = obj/barcelona/bpp.res
+BARCELONA_OBJ = obj/barcelona/bpp.o obj/barcelona/glad.o $(BARCELONA_RES)
+
 BDVER1 = -march=bdver1
+BDVER1_BIN = bin/bdver1/bpp.exe
+BDVER1_RES = obj/bdver1/bpp.res
+BDVER1_OBJ = obj/bdver1/bpp.o obj/bdver1/glad.o $(BDVER1_RES)
+
 BDVER2 = -march=bdver2
+BDVER2_BIN = bin/bdver2/bpp.exe
+BDVER2_RES = obj/bdver2/bpp.res
+BDVER2_OBJ = obj/bdver2/bpp.o obj/bdver2/glad.o $(BDVER2_RES)
+
 BDVER3 = -march=bdver3
+BDVER3_BIN = bin/bdver3/bpp.exe
+BDVER3_RES = obj/bdver3/bpp.res
+BDVER3_OBJ = obj/bdver3/bpp.o obj/bdver3/glad.o $(BDVER3_RES)
+
 BDVER4 = -march=bdver4
+BDVER4_BIN = bin/bdver4/bpp.exe
+BDVER4_RES = obj/bdver4/bpp.res
+BDVER4_OBJ = obj/bdver4/bpp.o obj/bdver4/glad.o $(BDVER4_RES)
+
 ZNVER1 = -march=znver1
+ZNVER1_BIN = bin/znver1/bpp.exe
+ZNVER1_RES = obj/znver1/bpp.res
+ZNVER1_OBJ = obj/znver1/bpp.o obj/znver1/glad.o $(ZNVER1_RES)
+
 ZNVER2 = -march=znver2
+ZNVER2_BIN = bin/znver2/bpp.exe
+ZNVER2_RES = obj/znver2/bpp.res
+ZNVER2_OBJ = obj/znver2/bpp.o obj/znver2/glad.o $(ZNVER2_RES)
+
 ZNVER3 = -march=znver3
+ZNVER3_BIN = bin/znver3/bpp.exe
+ZNVER3_RES = obj/znver3/bpp.res
+ZNVER3_OBJ = obj/znver3/bpp.o obj/znver3/glad.o $(ZNVER3_RES)
+
 BTVER1 = -march=btver1
+BTVER1_BIN = bin/btver1/bpp.exe
+BTVER1_RES = obj/btver1/bpp.res
+BTVER1_OBJ = obj/btver1/bpp.o obj/btver1/glad.o $(BTVER1_RES)
+
 BTVER2 = -march=btver2
+BTVER2_BIN = bin/btver2/bpp.exe
+BTVER2_RES = obj/btver2/bpp.res
+BTVER2_OBJ = obj/btver2/bpp.o obj/btver2/glad.o $(BTVER2_RES)
 
 .PHONY: all all-before all-after clean clean-custom x86_64 x86_64_v2 x86_64_v3 x86_64_v4 pentium lakemont pentium_mmx pentiumpro pentium2 pentium3 pentium3m pentium_m pentium4 pentium4m prescott nocona core2 nehalem westmere sandybridge ivybridge haswell broadwell skylake bonnell silvermont goldmont goldmont_plus tremont knl knm skylake_avx512 cannonlake icelake_client icelake_server cascadelake cooperlake tigerlake sapphirerapids alderlake rocketlake k6 k6_2 k6_3 athlon athlon_tbird athlon_4 athlon_xp athlon_mp k8 opteron athlon64 athlon_fx k8_sse3 opteron_sse3 athlon64_sse3 barcelona bdver1 bdver2 bdver3 bdver4 znver1 znver2 znver3 btver1 btver2
 
