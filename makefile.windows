@@ -181,18 +181,70 @@ ICELAKE_CLIENT_RES = obj/icelake_client/bpp.res
 ICELAKE_CLIENT_OBJ = obj/icelake_client/bpp.o obj/icelake_client/glad.o $(ICELAKE_CLIENT_RES)
 
 ICELAKE_SERVER = -march=icelake-server
+ICELAKE_SERVER_BIN = bin/icelake_server/bpp.exe
+ICELAKE_SERVER_RES = obj/icelake_server/bpp.res
+ICELAKE_SERVER_OBJ = obj/icelake_server/bpp.o obj/icelake_server/glad.o $(ICELAKE_SERVER_RES)
+
 CASCADELAKE = -march=cascadelake
+CASCADELAKE_BIN = bin/cascadelake/bpp.exe
+CASCADELAKE_RES = obj/cascadelake/bpp.res
+CASCADELAKE_OBJ = obj/cascadelake/bpp.o obj/cascadelake/glad.o $(CASCADELAKE_RES)
+
 COOPERLAKE = -march=cooperlake
+COOPERLAKE_BIN = bin/cooperlake/bpp.exe
+COOPERLAKE_RES = obj/cooperlake/bpp.res
+COOPERLAKE_OBJ = obj/cooperlake/bpp.o obj/cooperlake/glad.o $(COOPERLAKE_RES)
+
 TIGERLAKE = -march=tigerlake
+TIGERLAKE_BIN = bin/tigerlake/bpp.exe
+TIGERLAKE_RES = obj/tigerlake/bpp.res
+TIGERLAKE_OBJ = obj/tigerlake/bpp.o obj/tigerlake/glad.o $(TIGERLAKE_RES)
+
 SAPPHIRERAPIDS = -march=sapphirerapids
+SAPPHIRERAPIDS_BIN = bin/sapphirerapids/bpp.exe
+SAPPHIRERAPIDS_RES = obj/sapphirerapids/bpp.res
+SAPPHIRERAPIDS_OBJ = obj/sapphirerapids/bpp.o obj/sapphirerapids/glad.o $(SAPPHIRERAPIDS_RES)
+
 ALDERLAKE = -march=alderlake
+ALDERLAKE_BIN = bin/alderlake/bpp.exe
+ALDERLAKE_RES = obj/alderlake/bpp.res
+ALDERLAKE_OBJ = obj/alderlake/bpp.o obj/alderlake/glad.o $(ALDERLAKE_RES)
+
 ROCKETLAKE = -march=rocketlake
+ROCKETLAKE_BIN = bin/rocketlake/bpp.exe
+ROCKETLAKE_RES = obj/rocketlake/bpp.res
+ROCKETLAKE_OBJ = obj/rocketlake/bpp.o obj/rocketlake/glad.o $(ROCKETLAKE_RES)
+
 K6 = -march=k6
+K6_BIN = bin/k6/bpp.exe
+K6_RES = obj/k6/bpp.res
+K6_OBJ = obj/k6/bpp.o obj/k6/glad.o $(K6_RES)
+
 K6_2 = -march=k6-2
+K6_2_BIN = bin/k6_2/bpp.exe
+K6_2_RES = obj/k6_2/bpp.res
+K6_2_OBJ = obj/k6_2/bpp.o obj/k6_2/glad.o $(K6_2_RES)
+
 K6_3 = -march=k6-3
+K6_3_BIN = bin/k6_3/bpp.exe
+K6_3_RES = obj/k6_3/bpp.res
+K6_3_OBJ = obj/k6_3/bpp.o obj/k6_3/glad.o $(K6_3_RES)
+
 ATHLON = -march=athlon
+ATHLON_BIN = bin/athlon/bpp.exe
+ATHLON_RES = obj/athlon/bpp.res
+ATHLON_OBJ = obj/athlon/bpp.o obj/athlon/glad.o $(ATHLON_RES)
+
 ATHLON_TBIRD = -march=athlon-tbird
+ATHLON_TBIRD_BIN = bin/athlon_tbird/bpp.exe
+ATHLON_TBIRD_RES = obj/athlon_tbird/bpp.res
+ATHLON_TBIRD_OBJ = obj/athlon_tbird/bpp.o obj/athlon_tbird/glad.o $(ATHLON_TBIRD_RES)
+
 ATHLON_4 = -march=athlon-4
+ATHLON4_BIN = bin/athlon4/bpp.exe
+ATHLON4_RES = obj/athlon4/bpp.res
+ATHLON4_OBJ = obj/athlon4/bpp.o obj/athlon4/glad.o $(ATHLON4_RES)
+
 ATHLON_XP = -march=athlon-xp
 ATHLON_MP = -march=athlon-mp
 K8 = -march=k8
