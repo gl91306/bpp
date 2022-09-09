@@ -1,68 +1,22 @@
 ::Build Blender++ for Windows
 setlocal enableextensions enabledelayedexpansion
 cd /D %BPP_ROOT%
-if exist bin (
-  echo bin directory already exists
-) else (
-  mkdir bin
-)
+mkdir bin
 cd bin
-if exist x86_64 (
-  echo x86_64 directory already exists
-) else (
-  mkdir x86_64
-)
-if exist x86_64_v2 (
-  echo x86_64_v2 directory already exists
-) else (
-  mkdir x86_64_v2
-)
-if exist x86_64_v3 (
-  echo x86_64_v3 directory already exists
-) else (
-  mkdir x86_64_v3
-)
-cd x86_64
-if exist zlib1.dll (
-  echo DLLs already exist inside x86_64 directory
-) else (
-  xcopy "%BPP_COMPILER%/mingw64/bin/*.dll" "%BPP_ROOT%/bin/x86_64/" /f /g /y /h
-)
-cd ../x86_64_v2
-if exist zlib1.dll (
-  echo DLLs already exist inside x86_64_v2 directory
-) else (
-  xcopy "%BPP_COMPILER%/mingw64/bin/*.dll" "%BPP_ROOT%/bin/x86_64_v2/" /f /g /y /h
-)
-cd ../x86_64_v3
-if exist zlib1.dll (
-  echo DLLs already exist inside x86_64_v3 directory
-) else (
-  xcopy "%BPP_COMPILER%/mingw64/bin/*.dll" "%BPP_ROOT%/bin/x86_64_v3/" /f /g /y /h
-)
+mkdir x86_64
+mkdir x86_64_v2
+mkdir x86_64_v3
+
+xcopy "%BPP_COMPILER%/mingw64/bin/*.dll" "%BPP_ROOT%/bin/x86_64/" /f /g /y /h /u
+xcopy "%BPP_COMPILER%/mingw64/bin/*.dll" "%BPP_ROOT%/bin/x86_64_v2/" /f /g /y /h /u
+xcopy "%BPP_COMPILER%/mingw64/bin/*.dll" "%BPP_ROOT%/bin/x86_64_v3/" /f /g /y /h /u
 
 cd %BPP_ROOT%
-if exist obj (
-  echo obj directory already exists
-) else (
-  mkdir obj
-)
+mkdir obj
 cd obj
-if exist x86_64 (
-  echo x86_64 directory already exists
-) else (
-  mkdir x86_64
-)
-if exist x86_64_v2 (
-  echo x86_64_v2 directory already exists
-) else (
-  mkdir x86_64_v2
-)
-if exist x86_64_v3 (
-  echo x86_64_v3 directory already exists
-) else (
-  mkdir x86_64_v3
-)
+mkdir x86_64
+mkdir x86_64_v2
+mkdir x86_64_v3
 
 cd %BPP_COMPILER%/mingw64/bin
 if exist libboost_atomic-mt.dll (
@@ -70,8 +24,8 @@ if exist libboost_atomic-mt.dll (
 ) else (
   pacman -S mingw-w64-x86_64-toolchain --noconfirm
   pacman -S mingw-w64-x86_64-glfw --noconfirm
-  pacman -S mingw-w64-x86_64-boost --noconfirm
   pacman -S mingw-w64-x86_64-ncurses --noconfirm
+  pacman -S mingw-w64-x86_64-boost --noconfirm
   pacman -Syuu
 )
 

@@ -246,14 +246,50 @@ ATHLON4_RES = obj/athlon4/bpp.res
 ATHLON4_OBJ = obj/athlon4/bpp.o obj/athlon4/glad.o $(ATHLON4_RES)
 
 ATHLON_XP = -march=athlon-xp
+ATHLON_XP_BIN = bin/athlon_xp/bpp.exe
+ATHLON_XP_RES = obj/athlon_xp/bpp.res
+ATHLON_XP_OBJ = obj/athlon_xp/bpp.o obj/athlon_xp/glad.o $(ATHLON_XP_RES)
+
 ATHLON_MP = -march=athlon-mp
+ATHLON_MP_BIN = bin/athlon_mp/bpp.exe
+ATHLON_MP_RES = obj/athlon_mp/bpp.res
+ATHLON_MP_OBJ = obj/athlon_mp/bpp.o obj/athlon_mp/glad.o $(ATHLON_MP_RES)
+
 K8 = -march=k8
+K8_BIN = bin/k8/bpp.exe
+K8_RES = obj/k8/bpp.res
+K8_OBJ = obj/k8/bpp.o obj/k8/glad.o $(K8_RES)
+
 OPTERON = -march=opteron
+OPTERON_BIN = bin/opteron/bpp.exe
+OPTERON_RES = obj/opteron/bpp.res
+OPTERON_OBJ = obj/opteron/bpp.o obj/opteron/glad.o $(OPTERON_RES)
+
 ATHLON64 = -march=athlon64
+ATHLON64_BIN = bin/athlon64/bpp.exe
+ATHLON64_RES = obj/athlon64/bpp.res
+ATHLON64_OBJ = obj/athlon64/bpp.o obj/athlon64/glad.o $(ATHLON64_RES)
+
 ATHLON_FX = -march=athlon-fx
+ATHLON_FX_BIN = bin/athlon_fx/bpp.exe
+ATHLON_FX_RES = obj/athlon_fx/bpp.res
+ATHLON_FX_OBJ = obj/athlon_fx/bpp.o obj/athlon_fx/glad.o $(ATHLON_FX_RES)
+
 K8_SSE3 = -march=k8-sse3
+K8_SSE3_BIN = bin/k8_sse3/bpp.exe
+K8_SSE3_RES = obj/k8_sse3/bpp.res
+K8_SSE3_OBJ = obj/k8_sse3/bpp.o obj/k8_sse3/glad.o $(K8_SSE3_RES)
+
 OPTERON_SSE3 = -march=opteron-sse3
+OPTERON_SSE3_BIN = bin/opteron_sse3/bpp.exe
+OPTERON_SSE3_RES = obj/opteron_sse3/bpp.res
+OPTERON_SSE3_OBJ = obj/opteron_sse3/bpp.o obj/opteron_sse3/glad.o $(OPTERON_SSE3_RES)
+
 ATHLON64_SSE3 = -march=athlon64-sse3
+ATHLON64_SSE3_BIN = bin/athlon64_sse3/bpp.exe
+ATHLON64_SSE3_RES = obj/athlon64_sse3/bpp.res
+ATHLON64_SSE3_OBJ = obj/athlon64_sse3/bpp.o obj/athlon64_sse3/glad.o $(ATHLON64_SSE3_RES)
+
 BARCELONA = -march=barcelona
 BDVER1 = -march=bdver1
 BDVER2 = -march=bdver2
